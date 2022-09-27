@@ -28,5 +28,4 @@
 - IDE：Cloud9
 
 ## 使用素材
-- サイト名：写真AC
-- サイトURL：https://www.photo-ac.com
+- サイト名：写真AC、URL：https://www.photo-ac.com
