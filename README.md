@@ -1,4 +1,4 @@
-# :cat:ねこぐらし（CatsHere）
+# :cat:ねこぐらし（CatsHere）:cat:
 ～”猫”に特化したSNS～
 
 ## サイト概要
