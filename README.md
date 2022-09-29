@@ -1,8 +1,8 @@
-# CatsHere
+# :cat:ねこぐらし（CatsHere）
+～”猫”に特化したSNS～
 
-## サイト概要
+## :thought_balloon:サイト概要
 ### サイトテーマ
-～”猫”に特化したSNS～<br>
 家猫や地域猫を共有し、心の安らぎをもたらしてくれる場所です。<br>
 
 ### テーマを選んだ理由
@@ -15,17 +15,21 @@
 
 ### ターゲットユーザー
 - 猫が好きな人
+- 自宅に猫を飼っている人
+- 近所に推し猫がいる人
 
 ### 主な利用シーン
 - 疲れた時
 - 猫を見たい時
+- 自宅の猫を紹介したい時
+- 推し猫を共有したい時
 
-## 開発環境
+## :computer:開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
-## 使用素材
+## :books:使用素材
 - サイト名：写真AC、URL：https://www.photo-ac.com
