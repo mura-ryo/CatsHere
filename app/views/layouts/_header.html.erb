@@ -1,0 +1,76 @@
+<header>
+      <nav class = "navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class = "container">
+          <a class = "navbar-brand" href ="/">
+            <span>
+              <%= link_to image_tag("no_image.jpg" ,size: '80x40') ,root_path %>
+            </span>
+          </a>
+
+          <% if user_signed_in? %>
+          <!--会員のログイン時に表示-->
+          <div class ="d-flex align-items-center justify-content-center text-white">
+            ようこそ、<%= current_user.last_name %><%= current_user.first_name %>さん！
+          </div>
+
+          <ul class ="navbar-nav ml-10">
+            <li>
+              <%= link_to '/user/mypage', class: "nav-link text-light" do %>マイページ
+              <% end %>
+            </li>
+            <li>
+              <%= link_to '/posts', class: "nav-link text-light" do %>投稿一覧
+              <% end %>
+            </li>
+            <li>
+              <%= link_to '/favorites/index', class: 'nav-link text-light' do %>いいね一覧
+              <% end %>
+            </li>
+            <li>
+              <%= link_to '/messages/index', class: 'nav-link text-light' do %>メッセ一覧
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-light" do  %>ログアウト
+              <% end %>
+            </li>
+          </ul>
+
+            <% elsif admin_signed_in? %>
+            <!--管理者ログイン時に表示-->
+          <ul class ="navbar-nav ml-10">
+            <li>
+              <%= link_to '/admin/posts/index', class: "nav-link text-light" do %>投稿一覧
+              <% end %>
+            </li>
+            <li>
+              <%= link_to '/admin/users', class: "nav-link text-light" do %>会員一覧
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link text-light" do  %>ログアウト
+              <% end %>
+            </li>
+          </ul>
+
+            <% else %>
+
+　　　<!--ログアウト時に表示-->
+　　　   <ul class ="navbar-nav ml-10">
+            <li>
+              <%= link_to '/about', class: "nav-link text-light" do %>About
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_user_registration_path, class: "nav-link text-light" do %>新規登録
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_user_session_path, class: "nav-link text-light" do %>ログイン
+              <% end %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    </header>
