@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   #会員用
   scope module: 'user' do
     devise_for :users,skip: [:passwords], controllers: {
-      registrations: "users/registrations",
-      sessions: 'users/sessions'
+      registrations: "user/registrations",
+      sessions: 'user/sessions'
     }
 
     root to: "homes#top"
@@ -16,17 +16,17 @@ Rails.application.routes.draw do
       get "followers" => "relationships#followers", as: "followers"
     end
 
-    get '/users/mypage' =>'users#show'
-    get '/users/infomation/edit' => 'users#edit'
-    patch '/users/infomation' => 'users#update'
-    get '/users/quit' => 'users#quit'
-    patch '/users/close' => 'users#close'
+    get '/user/mypage' =>'users#show'
+    get '/user/infomation/edit' => 'users#edit'
+    patch '/user/infomation' => 'users#update'
+    get '/user/quit' => 'users#quit'
+    patch '/user/delete' => 'users#delete'
 
     resources :posts, only: [:new, :index, :create, :show, :edit, :update, :destroy] do
       resources :post_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
-    
+
     resources :messages, :only => [:create, :destroy]
     resources :rooms, :only => [:create, :show, :index]
 
@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   #管理者用
 
    devise_for :admin, skip: [:registrations, :passwords], controllers: {
-      sessions: 'admins/sessions'
+      sessions: 'admin/sessions'
     }
 
   namespace :admin do
@@ -44,8 +44,6 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :create, :show, :edit, :update, :destroy]
     resources :post_comments, only: [:create, :destroy ]
     resources :users, only: [:index, :show, :destroy]
-    resources :admins, only: [:index, :create, :show, :edit, :update]
-    
   end
 
 end

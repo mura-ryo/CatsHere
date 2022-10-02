@@ -10,104 +10,11 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-<body>
-    <header>
-      <nav class = "navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class = "container">
-          <a class = "navbar-brand" href ="/">
-            <span>
-              <%= link_to image_tag"no_image.jpg" ,size: '80x40' %>
-              </span>
-          </a>
-
-          <% if customer_signed_in? %>
-          <!--会員のログイン時に表示-->
-          <div class ="d-flex align-items-center justify-content-center text-white">
-            ようこそ、<%= current_customer.last_name %><%= current_customer.first_name %>さん！
-          </div>
-
-          <ul class ="navbar-nav ml-10">
-            <li>
-              <%= link_to '/customers/mypage', class: "nav-link text-light" do %>マイページ
-              <% end %>
-            </li>
-            <li>
-              <%= link_to '/items', class: "nav-link text-light" do %>商品一覧
-              <% end %>
-            </li>
-            <li>
-              <%= link_to '/carts', class: 'nav-link text-light' do %>カート一覧
-              <% end %>
-            </li>
-            <li>
-              <%= link_to destroy_customer_session_path, method: :delete, class: "nav-link text-light" do  %>ログアウト
-              <% end %>
-            </li>
-          </ul>
-
-            <% elsif admin_signed_in? %>
-            <!--管理者ログイン時に表示-->
-          <ul class ="navbar-nav ml-10">
-            <li>
-              <%= link_to '/admin/items', class: "nav-link text-light" do %>商品一覧
-              <% end %>
-            </li>
-            <li>
-              <%= link_to '/admin/customers', class: "nav-link text-light" do %>会員一覧
-              <% end %>
-            </li>
-            <li>
-              <%= link_to '/admin', class: 'nav-link text-light' do %>注文履歴一覧
-              <% end %>
-            </li>
-            <li>
-              <%= link_to '/admin/genres', class: 'nav-link text-light' do %>ジャンル一覧
-              <% end %>
-            </li>
-            <li>
-              <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link text-light" do  %>ログアウト
-              <% end %>
-            </li>
-          </ul>
-
-            <% else %>
-
-　　　<!--ログアウト時に表示-->
-　　　   <ul class ="navbar-nav ml-10">
-            <li>
-              <%= link_to '/about', class: "nav-link text-light" do %>About
-              <% end %>
-            </li>
-            <li>
-              <%= link_to '/items', class: "nav-link text-light" do %>商品一覧
-              <% end %>
-            </li>
-            <li>
-              <%= link_to new_customer_registration_path, class: "nav-link text-light" do %>新規登録
-              <% end %>
-            </li>
-            <li>
-              <%= link_to new_customer_session_path, class: "nav-link text-light" do %>ログイン
-              <% end %>
-            </li>
-            <% end %>
-          </ul>
-        </div>
-      </nav>
-    </header>
-
+  <body>
+    <%= render 'layouts/header' %>
     <main>
       <%= yield %>
-    </main>
-
-    <footer class ="fixed-bottom">
-      <div class ="container mt-5">
-        <div class ="row">
-          <div class ="mx-auto">
-            <p>Cats Here</p>
-          </div>
-        </div>
-      </div>
-    </footer>
+  </main>
+    <%= render 'layouts/footer' %>
   </body>
 </html>
