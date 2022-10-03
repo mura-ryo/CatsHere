@@ -1,0 +1,35 @@
+<!-- 新規投稿 -->
+        <h2>新規投稿</h2>
+    <%= form_with model: @post do |f| %>
+    <table>
+     <tr>
+       <td>
+         <%= f.label :タイトル %>
+       </td>
+       <td>
+        <%= f.text_field :title, placeholder: "タイトル" %> 
+       </td>
+     </tr>
+     <tr>
+       <td>
+    　　<%= f.label :写真 %>
+       </td>
+       <td>
+         <%= f.file_field :image, placeholder: "写真", accept: "image/*" %>
+       </td>
+     </tr>
+     <tr>
+       <td>
+        <%= f.label :本文 %>
+       </td>
+       <td>
+        <%= f.text_area :body, placeholder: "こちらに文章をお書きください。", size: "50x5" %> 
+       </td>
+     </tr>
+     </table>
+　　　<tr>
+        <div class="row justify-content-center">
+          <%= f.submit '投稿', class: 'btn btn-success px-4' %>
+        </div>
+        </tr>　
+      <% end %>

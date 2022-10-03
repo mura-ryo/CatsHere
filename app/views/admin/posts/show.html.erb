@@ -6,22 +6,14 @@
   <div class= "container">
     <div class= "row">
       <div class= "col-md-3">
-        <h2>投稿詳細</h2>
+        <h2>post detail</h2>
         <table class="table table-hover table-inverse">
           <tbody>
             <tr>
-             <td>
-               <%= image_tag @post.user.get_profile_image, size:"80x80" %></br>
-               <%= link_to user_path(@user.id) do %><%= @user.name %><% end %>
-             </td>
+             <td><%= image_tag @post.user.get_profile_image, size:"80x80" %></br><%= link_to user_path(@user.id) do %><%= @user.name %><% end %></td>
             </tr>
             <tr>
-             <td><%= @post.title %></td>
-            </tr>
-            <tr>
-              <td>
-                <%= image_tag @post.get_image, size:'80x80' %>
-              </td>
+             <td><%= link_to post_path(@post.id) do %><%= @post.title %><% end %></td>
             </tr>
             <tr>
              <td><%= @post.body %></td>

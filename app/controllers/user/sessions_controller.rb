@@ -16,7 +16,7 @@ class User::SessionsController < Devise::SessionsController
     if @user.valid_password?(params[:user][:password]) && (@user.is_deleted == false)
       redirect_to posts_path(current_user)
     else
-      redirect_to session_path
+      redirect_to new_user_session_path
     end
   end
 
