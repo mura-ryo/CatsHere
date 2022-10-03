@@ -16,15 +16,15 @@ Rails.application.routes.draw do
       get "followers" => "relationships#followers", as: "followers"
     end
 
-    get '/user/mypage' =>'users#show'
-    get '/user/infomation/edit' => 'users#edit'
-    patch '/user/infomation' => 'users#update'
+    get "search" => "searches#search"
+    get "searches/search"
     get '/user/quit' => 'users#quit'
     patch '/user/delete' => 'users#delete'
+    get 'favorites/index' => 'favorites#create'
 
     resources :posts, only: [:new, :index, :create, :show, :edit, :update, :destroy] do
       resources :post_comments, only: [:create, :destroy]
-      resource :favorites, only: [:create, :destroy]
+      resource :favorites, only: [:index, :create, :destroy]
     end
 
     resources :messages, :only => [:create, :destroy]
@@ -43,7 +43,7 @@ Rails.application.routes.draw do
 
     resources :posts, only: [:index, :create, :show, :edit, :update, :destroy]
     resources :post_comments, only: [:create, :destroy ]
-    resources :users, only: [:index, :show, :destroy]
+    resources :users, only: [:index, :show, :edit, :update, :destroy]
   end
 
 end
