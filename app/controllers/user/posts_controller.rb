@@ -14,7 +14,7 @@ class User::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      flash[:notice] = "You have created post successfully."
+      flash[:notice] = "投稿完了しました！"
       redirect_to posts_path(@post)
     else
       @user = current_user
@@ -42,7 +42,7 @@ class User::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      flash[:notice] = "You have updated post successfully."
+      flash[:notice] = "投稿をアップデートしました！"
       redirect_to post_path(@post.id)
     else
       render :edit

@@ -11,7 +11,7 @@ class User::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = "Welcome! You have signed up successfully."
+      flash[:notice] = "ログイン完了です！"
       redirect_to user_path
     else
       render :new
@@ -34,25 +34,31 @@ class User::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:notice] = "You have updated user successfully."
+      flash[:notice] = "更新に成功しました！"
       redirect_to user_path(@user.id)
     else
       render :edit
     end
   end
   
-  def delete
-    @user = current_user
-    @user.update(is_deleted: true)
-    sign_out
-    redirect_to root_path
-  end
-
   def quit
     @user = current_user
   end
   
+  def delete
+    @user = current_user
+    @user.update(is_deleted: true)
+    flash[:notice] = "これまでありがとうございました。また機会があればよろしくお願いします"
+    sign_out
+    redirect_to root_path
+  end
 
+  def favorites
+    @user = User.find(params[:id])
+    favorites= Favorite.where(user_id: @user.id).pluck(:post_id)
+    @favorite_posts = Post.find(favorites)
+  end
+  
   private
     def user_params
       params.require(:user).permit(:nickname, :introduction, :profile_image)
