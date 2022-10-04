@@ -23,11 +23,11 @@
               <% end %>
             </li>
             <li>
-              <%= link_to '/posts', class: "nav-link text-light" do %>投稿一覧
+              <%= link_to posts_path, class: "nav-link text-light" do %>投稿一覧
               <% end %>
             </li>
             <li>
-              <%= link_to '/favorites/index', class: 'nav-link text-light' do %>いいね一覧
+              <%= link_to favorites_user_path(current_user.id), class: 'nav-link text-light' do %>いいね一覧
               <% end %>
             </li>
             <li>

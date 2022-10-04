@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     get "about" => "homes#about"
 
     resources :users, only: [:create, :show, :edit, :update, :quit, :delete ] do
+      member do
+      get "favorites"
+      end
+      
       resource :relationships, only: [:create, :destroy]
       get "followings" => "relationships#followings", as: "followings"
       get "followers" => "relationships#followers", as: "followers"
@@ -20,11 +24,13 @@ Rails.application.routes.draw do
     get "searches/search"
     get '/user/quit' => 'users#quit'
     patch '/user/delete' => 'users#delete'
-    get 'favorites/index' => 'favorites#create'
+    
+
 
     resources :posts, only: [:new, :index, :create, :show, :edit, :update, :destroy] do
       resources :post_comments, only: [:create, :destroy]
       resource :favorites, only: [:index, :create, :destroy]
+
     end
 
     resources :messages, :only => [:create, :destroy]
@@ -41,8 +47,8 @@ Rails.application.routes.draw do
   namespace :admin do
     get "/" => "homes#top"
 
-    resources :posts, only: [:index, :create, :show, :edit, :update, :destroy]
-    resources :post_comments, only: [:create, :destroy ]
+    resources :posts, only: [:index, :show, :edit, :update, :destroy]
+      resources :post_comments, only: [:destroy ]
     resources :users, only: [:index, :show, :edit, :update, :destroy]
   end
 

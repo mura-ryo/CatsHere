@@ -1,29 +1,30 @@
-        <h2>posts管理者</h2>
+<h2>いいね一覧</h2>
         <table class="table table-hover table-inverse">
           <thead>
             <tr>
               <th></th>
-              <th>ユーザー名</th>
-              <th>Title</th>
+              <th>ニックネーム</th>
+              <th>タイトル</th>
+              <th colspan="3"></th>
             </tr>
           </thread>
-          <tbody>
-            <% @posts.each do |post| %>
+<tbody>
+<% @favorite_posts.each do |post|%>
               <tr>
                 <td>
-                  <%= image_tag post.user.get_profile_image, size:'80x80' %>
+                  <%= image_tag post.user.get_profile_image, size:'50x50' %>
                 </td>
                 <td>
-                  <%= link_to admin_user_path(post.user) do %>
+                  <%= link_to user_path(post.user) do %>
                   <%= post.user.name %>
                   <% end %>
                 </td>
                 <td>
-                  <%= link_to admin_post_path(post.id) do %>
+                  <%= link_to post_path(post.id) do %>
                   <%= post.title %>
                   <% end %>
                 </td>
               </tr>
-            <% end %>
-          </tbody>
-        </table>
+<% end %>
+</tbody>
+</table>

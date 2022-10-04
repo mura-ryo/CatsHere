@@ -32,9 +32,23 @@
              <td><%= link_to "Destroy", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-sm btn-danger" %></td>
              <% end %>
             </tr>
+             <!-- ファボ機能 -->
+　　         <td id=favorite_buttons_<%= @post.id %>>
+               <%= render 'user/favorites/favorite-btn', post: @post %>
+        　    </td>
+        　　   <td>コメント数: <%= @post.post_comments.count %></td>
           </tbody>
           </table>
-     </div>        
+        <!-- コメ一覧 -->
+        <div id= comments-area_<%= @post.id %>>
+          <%= render 'user/post_comments/index', post: @post %>
+        </div>
+        <!-- コメ機能 -->
+        <div id= form-area_<%= @post.id %>>
+          <%= render 'user/post_comments/comment', post: @post, post_comment: @post_comment  %>
+        </div>
+         <!---->
+     </div>
      </div>
   </div>
 </main>

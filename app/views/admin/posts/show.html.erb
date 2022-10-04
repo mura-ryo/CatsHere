@@ -5,28 +5,38 @@
 <main>
   <div class= "container">
     <div class= "row">
-      <div class= "col-md-3">
-        <h2>post detail</h2>
+      <div class= "col-md-">
+        <h2>投稿詳細ー管理者</h2>
         <table class="table table-hover table-inverse">
           <tbody>
             <tr>
-             <td><%= image_tag @post.user.get_profile_image, size:"80x80" %></br><%= link_to user_path(@user.id) do %><%= @user.name %><% end %></td>
+             <td>
+               <%= image_tag @post.user.get_profile_image, size:"80x80" %>
+               <%= link_to admin_user_path(@user.id) do %><%= @user.name %><% end %>
+             </td>
             </tr>
             <tr>
-             <td><%= link_to post_path(@post.id) do %><%= @post.title %><% end %></td>
+             <td><%= @post.title %></td>
             </tr>
             <tr>
              <td><%= @post.body %></td>
             </tr>
             <tr></tr>
-             <% if @post.user == current_user %>
-             <td><%= link_to "Edit", edit_post_path(@post), class:"btn btn-sm btn-success" %></td>
-             <td><%= link_to "Destroy", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-sm btn-danger" %></td>
-             <% end %>
+             <td><%= link_to "Destroy", admin_post_path, method: :delete,"data-confirm" => "大切な会員様の投稿です。本当に削除しますか？", class:"btn btn-sm btn-danger" %>
+             </td>
             </tr>
+             <!-- ファボ機能 -->
+　　         <td id=favorite_buttons_<%= @post.id %>>
+               <%= render 'admin/favorites/favorite-btn', post: @post %>
+        　    </td>
+        　　   <td>コメント数: <%= @post.post_comments.count %></td>
           </tbody>
           </table>
-     </div>        
+                  <!-- コメ一覧 -->
+        <div id= comments-area_<%= @post.id %>>
+          <%= render 'admin/post_comments/index', post: @post %>
+        </div>
+     </div>
      </div>
   </div>
 </main>
