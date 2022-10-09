@@ -1,13 +1,6 @@
 class User::UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
 
-  def index
-    @users = User.all
-    @post = Post.new
-    @posts = Post.all
-    @user = current_user
-  end
-
   def create
     @user = User.new(user_params)
     if @user.save
@@ -17,13 +10,7 @@ class User::UsersController < ApplicationController
       render :new
     end
   end
-
-  def show
-    @user = User.find(params[:id])
-    @posts = @user.posts
-    @post = Post.new
-  end
-
+  
   def edit
     @user = User.find(params[:id])
     unless @user == current_user
@@ -40,7 +27,8 @@ class User::UsersController < ApplicationController
       render :edit
     end
   end
-  
+
+  # 退会機能
   def quit
     @user = current_user
   end
@@ -53,15 +41,47 @@ class User::UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def favorites
+  # DM機能
+  def show
     @user = User.find(params[:id])
-    favorites= Favorite.where(user_id: @user.id).pluck(:post_id)
-    @favorite_posts = Post.find(favorites)
+    @posts = @user.posts
+    @post = Post.new
+    @currentUserEntry = Entry.where(user_id: current_user.id)
+    @userEntry = Entry.where(user_id: @user.id)
+
+    unless @user.id == current_user.id
+      @currentUserEntry.each do |cu|
+        @userEntry.each do |u|
+          if cu.room_id == u.room_id
+            @isRoom = true
+            @roomId = cu.room_id
+          end
+        end
+      end
+      unless @isRoom
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
   end
   
+  def rooms
+    @user = User.find(params[:id])
+    @room = Room.find(params[:id])
+    @rooms = Room.all
+    @entries = @room.entries
+    @users = User.all
+  end
+
+  def favorites
+    @user = User.find(params[:id])
+    favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
+    @favorite_posts = Post.find(favorites)
+  end
+
   private
     def user_params
-      params.require(:user).permit(:nickname, :introduction, :profile_image)
+      params.require(:user).permit(:name, :introduction, :profile_image)
     end
 
     def ensure_guest_user
