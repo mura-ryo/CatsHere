@@ -13,8 +13,9 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :show, :edit, :update, :quit, :delete ] do
       member do
       get "favorites"
+      get "rooms"
       end
-      
+
       resource :relationships, only: [:create, :destroy]
       get "followings" => "relationships#followings", as: "followings"
       get "followers" => "relationships#followers", as: "followers"
@@ -24,16 +25,13 @@ Rails.application.routes.draw do
     get "searches/search"
     get '/user/quit' => 'users#quit'
     patch '/user/delete' => 'users#delete'
-    
-
 
     resources :posts, only: [:new, :index, :create, :show, :edit, :update, :destroy] do
       resources :post_comments, only: [:create, :destroy]
       resource :favorites, only: [:index, :create, :destroy]
-
     end
 
-    resources :messages, :only => [:create, :destroy]
+    resources :messages, :only => [:create]
     resources :rooms, :only => [:create, :show, :index]
 
   end

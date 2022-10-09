@@ -1,0 +1,21 @@
+<h1>DM一覧</h1>
+<table class= "table" >
+<thead>
+  <tr>
+  <th></th>
+  </tr>
+</thead>
+<tbody>
+<% @rooms.each do |room| %>
+  <tr>
+   <td><%= link_to room_path(room) do %>
+       <%= room.id %>
+         <% @entries.each do |e| %>
+         <%= e.user.name %>
+         <% end %>
+       <% end %>
+   </td>
+<% end %>
+  </tr>
+</tbody>
+</table>
