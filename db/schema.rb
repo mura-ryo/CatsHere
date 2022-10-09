@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(version: 2022_10_01_015909) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "entry_id"
+    t.string "room_id"
     t.string "name", null: false
     t.string "introduction"
     t.boolean "is_deleted", default: false, null: false
