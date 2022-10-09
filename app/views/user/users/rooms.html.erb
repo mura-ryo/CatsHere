@@ -6,16 +6,16 @@
   </tr>
 </thead>
 <tbody>
-<% @rooms.each do |room| %>
-  <tr>
-   <td><%= link_to room_path(room) do %>
-       <%= room.id %>
-         <% @entries.each do |e| %>
-         <%= e.user.name %>
-         <% end %>
-       <% end %>
-   </td>
-<% end %>
+
   </tr>
+ <% @users.each do |user| %>
+  <tr>
+    <% unless user == current_user %>
+   <td><%= link_to room_path(user) do %>
+         <%= @entries.ids %>
+         <% end %>
+  <% end %>
+<% end %>
+   </td>
 </tbody>
 </table>
