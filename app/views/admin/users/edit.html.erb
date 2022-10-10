@@ -3,10 +3,14 @@
     <div class= "row">
         <div class= "col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
         </br>
-        <h2>User info</h2>
+        <h2>会員情報（管理者側）</h2>
         <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch do |f| %>
           <%= f.label :ニックネーム %></br>
           <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%></br></br>
+          <%= f.label :メールアドレス %></br>
+          <%= f.text_field :email, autofocus: true, id:"inputName", placeholder:"メールアドレス"%></br></br>
+          <%= f.label :パスワード(6文字以上) %></br>
+          <%= f.text_field :password, autofocus: true, id:"inputName", placeholder:"パスワード"%></br></br>
           <%= f.label :プロフィール写真 %></br>
           <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></br></br>
           <%= f.label :自己紹介文 %></br>

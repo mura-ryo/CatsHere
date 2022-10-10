@@ -1,13 +1,18 @@
-<h1>DM一覧</h1>
-<% @rooms.each do |r| %>
-  <td>
-    <%= link_to room_path(r.id) do %>
-      <% @rooms.each do |r| %>
-        <%= r.id %>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto col-10">
+      <h2>チャット一覧</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="mx-auto col-8">
+      <% @another_entries.each do |entry| %>
+        <%= link_to room_path(entry.room) do %>
+          <div class="col-1 profile_image"><%= image_tag entry.user.get_profile_image %></div>
+          <div class="col-3" style="text-align: center;"><%= entry.user.name %></div>
+          <div class="col-4" style="text-align: center;"><%= truncate(Message.find_by(id: entry.room.message_ids.last)&.content, length: 20) %></div>
+        <% end %>
       <% end %>
-      <% @users.each do |u| %>
-        <%= u.name %>
-      <% end %>
-      <% end %>
-  </td>
-<% end %>
+    </div>
+  </div>
+</div>
