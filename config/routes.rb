@@ -9,7 +9,8 @@ Rails.application.routes.draw do
 
     root to: "homes#top"
     get "about" => "homes#about"
-
+    post '/guest_sign_in' => 'homes#guest'
+    
     resources :users, only: [:create, :show, :edit, :update, :quit, :delete ] do
       member do
       get "favorites"
@@ -45,9 +46,14 @@ Rails.application.routes.draw do
   namespace :admin do
     get "/" => "homes#top"
 
-    resources :posts, only: [:index, :show, :edit, :update, :destroy]
+    resources :posts, only: [:index, :show, :edit, :update, :destroy] do
       resources :post_comments, only: [:destroy ]
-    resources :users, only: [:index, :show, :edit, :update, :destroy]
+    end
+    resources :users, only: [:index, :show, :edit, :update, :destroy] do
+    end
+    
+    get "searches/search"
+  
   end
-
+ 
 end

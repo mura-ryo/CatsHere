@@ -5,14 +5,14 @@ class User::PostCommentsController < ApplicationController
     @comment = PostComment.new(post_comment_params)
     @comment.user_id = current_user.id
     @comment.post_id = @post.id
-    if @comment.save
-      redirect_to post_path(@post)
-    end
+    @post_comments = @post.post_comments
+    @comment.save
   end
   
   def destroy
     PostComment.find(params[:id]).destroy
-    redirect_to post_path(params[:post_id])
+    @post = Post.find(params[:post_id])
+    @post_comments = @post.post_comments
   end
 
   private

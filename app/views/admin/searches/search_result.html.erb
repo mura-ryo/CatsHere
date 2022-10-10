@@ -1,0 +1,50 @@
+<h2>検索結果(管理者)</h2>
+
+<table class="table table-hover table-inverse">
+  <!--検索対象モデルがUserの時 -->
+  <% if @range == "ユーザー" %>
+    <tbody>
+      <% @users.each do |user| %>
+          <thead>
+            <tr>
+              <th>image</th>
+              <th>name</th>
+              <th colspan= "3"></th>
+            </tr>
+          </thead>
+        <tr>
+          <td><%= image_tag user.get_profile_image, size: '50x50' %></td>
+          <td><%= user.name %></td>
+          <td><%= link_to "Show", admin_user_path(user.id) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% else %>
+    <!--検索対象モデルがUserではない時(= 検索対象モデルがpostの時) -->
+    <tbody>
+      <% @posts.each do |post| %>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Title</th>
+              <th>Opinion</th>
+              <th colspan="3"></th>
+            </tr>
+          </thread>
+        <tr>
+          <td>
+            <%= link_to admin_user_path(post.user) do %>
+            <%= image_tag post.user.get_profile_image, size:'80x80' %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to admin_post_path(post.id) do %>
+            <%= post.title %>
+            <% end %>
+          </td>
+          <td><%= post.body %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>

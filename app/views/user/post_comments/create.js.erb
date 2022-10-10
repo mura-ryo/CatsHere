@@ -1,4 +1,4 @@
 <!--id="comments_areaにをrenderで指定した部分テンプレートに更新-->
-$("#comments-area_<%= @post.id %>").html("<%= j(render 'user/post_comments/comindex', post: @post) %>");
+$("#comments-area_<%= @post.id %>").html("<%= j(render 'user/post_comments/index', post: @post) %>");
 <!--フォームを送信したあとにフォームの値を空にします-->
 $("#post_comment_comment").val('');
