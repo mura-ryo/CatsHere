@@ -1,13 +1,14 @@
 class User::PostsController < ApplicationController
-  
+  before_action :authenticate_user!
+
   def new
     @post = Post.new
   end
-  
+
   def index
     @posts = Post.all
-    @user = current_user
   end
+
 
   def create
     @post = Post.new(post_params)

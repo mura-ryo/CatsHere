@@ -5,20 +5,20 @@
         </br>
         <h2>会員情報編集</h2>
         <%= form_with model: @user, url: user_path(@user.id), method: :patch do |f| %>
-          <%= f.label :ニックネーム %></br>
-          <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"ニックネーム"%></br></br>
-          <%= f.label :メールアドレス %></br>
-          <%= f.text_field :email, autofocus: true, id:"inputName", placeholder:"メールアドレス"%></br></br>
-          <%= f.label :パスワード(6文字以上) %></br>
-          <%= f.text_field :password, autofocus: true, id:"inputName", placeholder:"パスワード"%></br></br>
-          <%= f.label :プロフィール写真 %></br>
+          <%= f.label :"ニックネーム" %></br>
+          <%= f.text_field :name, autofocus: true, placeholder: "ニックネーム", autocomplete: "name" %></br></br>
+          <%= f.label :"メールアドレス" %></br>
+          <%= f.email_field :email, placeholder: "メールアドレス", autocomplete: "email" %></br></br>
+          <%= f.label :"パスワード(6文字以上)" %></br>
+          <%= f.password_field :password, placeholder: "パスワード", autocomplete: "new-password" %></br></br>
+          <%= f.label :"プロフィール写真" %></br>
           <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></br></br>
-          <%= f.label :自己紹介文 %></br>
-          <%= f.text_area :introduction, size: "60x10", autofocus: true, id:"inputName", placeholder:"自己紹介"%></br></br>
+          <%= f.label :"自己紹介文" %></br>
+          <%= f.text_area :introduction, size: "60x10", placeholder: "自己紹介", autocomplete: "introduction" %></br></br>
           <%= f.submit "更新する", class: "btn btn-secondary" %>
         <% end %>
         <div class="col-md-5 offset-md-2 mt-3 mb-5">
-          <%= link_to"退会する",user_quit_path, class: "btn btn-danger"%>
+          <%= link_to "退会する", user_quit_path, class: "btn btn-danger"%>
           </div>
       </div>
     </div>

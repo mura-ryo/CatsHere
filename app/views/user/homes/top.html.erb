@@ -1,12 +1,17 @@
-<h2>top</h2>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-xs-10">
+                        <img src="assets/no_image.jpeg" alt="" class="img-responsive">
+                        </div>
 
-ログイン
+                    </div>
+                    <div class="jumbotron">
+                        <h1><small>Cats Here</small></br>
+			                  <strong>ねこぐらし</strong></h1>
+                        <p>thanks for cats</p>
+                        <%= link_to "私たちについて", about_path , class:"btn btn-primary btn-lg" %>
+                        <%= link_to "ゲストログイン", guest_sign_in_path , class:"btn btn-lg btn-danger", method: :post %>
+                    </div>
+                </div>
+            </div>
 
-ゲストログイン
-
-        <div class="row">
-          <%= link_to 'ゲストログイン', guest_sign_in_path, class: "btn btn-secondary  sign_in", method: :post %>
-        </div>
-        </div>
-
-新規登録

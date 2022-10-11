@@ -1,8 +1,0 @@
-<!-- 新規投稿 -->
-        <%= render 'posts/new', post: Post.new %>
-      </div>
-      <div class= "col-md-8 offset-md-1">
-<!-- 検索フォーム -->
-        <%= render 'searches/search' %>
-        
-            

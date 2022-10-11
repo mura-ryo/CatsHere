@@ -1,4 +1,5 @@
 class User::UsersController < ApplicationController
+  before_action :authenticate_user!
 
   def create
     @user = User.new(user_params)
@@ -19,7 +20,13 @@ class User::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    # ユーザ更新時にパスワードの値が空だった場合、パスワードを更新しない
+    if params[:user][:password].blank?
+      params[:user].delete("password")
+    end
     if @user.update(user_params)
+      # パスワード更新後、再ログイン
+      sign_in(@user, :bypass => true)
       flash[:notice] = "更新に成功しました！"
       redirect_to user_path(@user.id)
     else
@@ -40,14 +47,13 @@ class User::UsersController < ApplicationController
     redirect_to root_path
   end
 
-  # DM機能
+  # 会員情報
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
-    @post = Post.new
+  # DM機能  
     @currentUserEntry = Entry.where(user_id: current_user.id)
     @userEntry = Entry.where(user_id: @user.id)
-
     unless @user.id == current_user.id
       @currentUserEntry.each do |cu|
         @userEntry.each do |u|
@@ -80,7 +86,7 @@ class User::UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:name, :introduction, :profile_image)
+      params.require(:user).permit(:name, :email, :password, :introduction, :profile_image)
     end
 
 end
