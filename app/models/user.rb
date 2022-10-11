@@ -44,6 +44,5 @@ class User < ApplicationRecord
   def self.looks(search, word)
     search = "partial_match"
     @user = User.where("name LIKE?", "%#{word}%")
-  end  
-         
+  end
 end

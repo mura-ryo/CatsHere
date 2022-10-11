@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     root to: "homes#top"
     get "about" => "homes#about"
     post '/guest_sign_in' => 'homes#guest'
-    
+
     resources :users, only: [:create, :show, :edit, :update, :quit, :delete ] do
       member do
       get "favorites"
@@ -51,9 +51,9 @@ Rails.application.routes.draw do
     end
     resources :users, only: [:index, :show, :edit, :update, :destroy] do
     end
-    
+
     get "searches/search"
-  
+
   end
- 
+
 end

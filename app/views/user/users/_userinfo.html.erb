@@ -1,0 +1,28 @@
+        <h2>ユーザー情報</h2>
+          <table class="table">
+            <tr><%= image_tag current_user.get_profile_image, size:'100x100' %></tr>
+            <tbody>
+              <tr>
+                <th>ニックネーム</th>
+                <th><%= user.name %></th>
+              </tr>
+              <tr>
+                <th>自己紹介文</th>
+                <th><%= user.introduction %></th>
+              </tr>
+            </tbody>
+            <tr>
+              <th>follows</th>
+              <th><%= link_to user_followings_path(user.id) do %>
+              <%= user.followings.count %>
+              <% end %>
+              </th>
+            </tr>
+            <tr>
+              <th>followers</th>
+              <th><%= link_to user_followers_path(user.id) do %>
+              <%= user.followers.count %>
+              <% end %>
+              </th>
+            </tr>
+          </table>
