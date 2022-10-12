@@ -1,84 +1,76 @@
 <header>
-      <nav class = "navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class = "container-fluid">
+  <!--会員のログイン時に表示-->
+  <% if user_signed_in? %>
+<nav class = "navbar navbar-expand-lg navbar-dark", style="background-color: #FFCC99;">
+    <div class = "container">
 
-          <% if user_signed_in? %>
-            <span>
-              <%= link_to image_tag("no_image.jpg" ,size: '80x40') ,posts_path %>
-            </span>
-          <!--会員のログイン時に表示-->
-          <div class ="d-flex align-items-center justify-content-center text-white">
-            ようこそ<br><%= current_user.name %>さん！
-          </div>
-
-          <ul class ="navbar-nav ml-10">
-            <li>
-              <%= link_to new_post_path, class: "nav-link text-light" do %>投稿
-              <% end %>
-            </li>
-            <li>
-              <%= link_to posts_path, class: "nav-link text-light" do %>投稿一覧
-              <% end %>
-            </li>
-            <li>
-              <%= link_to user_path(current_user.id), class: "nav-link text-light" do %>マイページ
-              <% end %>
-            </li>
-            <li>
-              <%= link_to rooms_path, class: 'nav-link text-light' do %>チャット
-              <% end %>
-            </li>
-            <li>
-              <!-- 検索フォーム -->
-              <%= render 'user/searches/search' %>
-            </li>
-            <li>
-              <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-light" do  %>ログアウト
-              <% end %>
-            </li>
-          </ul>
-
-            <% elsif admin_signed_in? %>
-            <!--管理者ログイン時に表示-->
-            <span>
-              <%= link_to image_tag("no_image.jpg" ,size: '80x40') ,admin_posts_path %>
-            </span>
-          <ul class ="navbar-nav ml-10">
-            <li>
-              <%= link_to admin_posts_path, class: "nav-link text-light" do %>投稿一覧
-              <% end %>
-            </li>
-            <li>
-              <%= link_to admin_users_path, class: "nav-link text-light" do %>会員一覧
-              <% end %>
-            </li>
-            <li>
-              <!-- 検索フォーム -->
-              <%= render 'admin/searches/search' %>
-            </li>
-            <li>
-              <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link text-light" do  %>ログアウト
-              <% end %>
-            </li>
-          </ul>
-
-            <% else %>
-
-　　　<!--ログアウト時に表示-->
-            <span>
-              <%= link_to image_tag("no_image.jpg" ,size: '80x40') ,root_path %>
-            </span>
-　　　   <ul class ="navbar-nav ml-10">
-            <li>
-              <%= link_to new_user_registration_path, class: "nav-link text-light" do %>新規登録
-              <% end %>
-            </li>
-            <li>
-              <%= link_to new_user_session_path, class: "nav-link text-light" do %>ログイン
-              <% end %>
-            </li>
-            <% end %>
-          </ul>
-        </div>
-      </nav>
-    </header>
+  <span>
+    <%= link_to image_tag("logo.png" ,size: '110x50') ,posts_path %>
+  </span>
+  <div class ="d-flex align-items-center justify-content-center text-white">
+    <a class= "text-secondary">ようこそ、<%= current_user.name %>さん！</a>
+  </div>
+  <ul class ="navbar-nav ml-10">
+    <li>
+    <li>
+      <%= link_to new_post_path do %>
+      <button class="text-secondary btn-light rounded-pill">投稿</button>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to posts_path do %>
+      <button class="text-secondary btn-light rounded-pill">投稿一覧</button>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to user_path(current_user.id) do %>
+      <button class="text-secondary btn-light rounded-pill">マイページ</button>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to rooms_path do %>
+      <button class="text-secondary btn-light rounded-pill">チャット</button>
+      <% end %>
+    </li>
+      <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn-light text-secondary rounded-pill " %>
+    </li>
+  </ul>
+</nav>
+  <!--管理者のログイン時に表示-->
+  <% elsif admin_signed_in? %>
+<nav class = "navbar navbar-expand-lg navbar-dark", style="background-color: #333333;">
+  <div class = "container">
+  <span>
+    <%= link_to image_tag("no_image.jpg" ,size: '80x40'), admin_posts_path %>
+  </span>
+  <ul class ="navbar-nav ml-10">
+    <li>
+      <%= link_to "投稿一覧", admin_posts_path, class: "nav-link text-light" %>
+    </li>
+    <li>
+      <%= link_to "会員一覧", admin_users_path, class: "nav-link text-light" %>
+    </li>
+    <li>
+      <%= button_to "ログアウト", destroy_admin_session_path, method: :delete, class: "radius" %>
+    </li>
+  </ul>
+</nav>
+　<!--ログアウト時に表示-->
+  <% else %>
+    <nav class = "navbar navbar-expand-lg navbar-dark", style="background-color: #66CCFF;">
+          <div class = "container">
+      <span>
+        <%= link_to image_tag("logo.png" ,size: '110x50'), root_path %>
+      </span>
+  　     <ul class ="navbar-nav ml-10">
+          <li>
+            <%= link_to "新規登録", new_user_registration_path, class: "nav-link text-light" %>
+          </li>
+          <li>
+            <%= link_to "ログイン", new_user_session_path, class: "nav-link text-light" %>
+          </li>
+        </ul>
+    </nav>
+  <% end %>
+  </div>
+</header>
