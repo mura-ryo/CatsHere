@@ -1,26 +1,29 @@
-                <div class="container">
+<div class ="container">
+  <div class ="row justify-content-start">
+    <div class="col-3 pt-5">
 
-<h2>今月の猫</h2>
-      <%= image_tag "3.jpg" ,size: '500x334', class: "img-fluid" %>
-
-
-
-                      <div class="jumbotron">
-                        <h1><small>Cats Here</small></br>
-			                  <strong>ねこぐらし</strong></h1>
-                        <p>thanks for all cats</p>
-                        <td>
+                      <div class="rounded", style="width: 250px; height: 400px;background:url(assets/3.jpg); background-size:cover;">
+                        <p class="text-center p-3">~Cats Here~</p>
+			                  <h3 class="text-center",style="font-weight: bold">ねこぐらし</h3>
+                        <p class="text-center p-3">thanks for all cats</p>
+                        <div class="p-3 text-center">
                           <%= link_to about_path do %>
-                          <button class= " text-secondary btn btn-lg rounded-pill", style="background-color: #FFCC99;">私たちについて</button>
+                          <button class= "btn-light text-secondary btn-lg rounded-pill", style="background-color: #FFCC99;box-shadow: 2px 2px gray;">私たちについて</button>
                           <% end %>
-                        </td></br></br>
-                        <td>
-                          <%= link_to guest_sign_in_path method: :post do %>
-                          <button class= "btn btn-lg rounded-pill", style= "background-color: #FFCC99;">ゲストログイン</button>
-                          <% end %>
-                        </td>
+                        </div>
+                        <div class="p-3 text-center">
+                          <%= button_to "ゲストログイン", guest_sign_in_path, method: :post, class:"btn-light btn-lg text-secondary rounded-pill", style:"background-color: #FFCC99;box-shadow: 2px 2px gray;"  %>
+                        </div>
                     </div>
-                </div>
-            </div>
 
                     </div>
+                        <div class="col-1">
+                          </div>
+
+                        <div class="col-6">
+<h4 class="text-center px-5 py-2">今月のねこ</h4>
+      <div>
+      <%= image_tag "3.jpg" , style:"width: 500px; height: 500px;",class:"rounded" %>
+      </div>
+      </div>
+      </br>
