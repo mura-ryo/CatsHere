@@ -1,39 +1,38 @@
-<header>
+<header style="font-family:Serif">
   <!--会員のログイン時に表示-->
   <% if user_signed_in? %>
 <nav class = "navbar navbar-expand-lg navbar-dark", style="background-color: #FFCC99;">
     <div class = "container">
 
   <span>
-    <%= link_to image_tag("logo.png" ,size: '110x50') ,posts_path %>
+    <%= link_to image_tag("logo.png" ,size: '110x60') ,posts_path %>
   </span>
   <div class ="d-flex align-items-center justify-content-center text-white">
-    <a class= "text-secondary">ようこそ、<%= current_user.name %>さん！</a>
+    <i class= "text-dark", style="font-size:120%">ようこそ、<%= current_user.name %>さん！</i>
   </div>
   <ul class ="navbar-nav ml-10">
-    <li>
-    <li>
+    <div class="mr-1">
       <%= link_to new_post_path do %>
       <button class="text-secondary btn-light rounded-pill">投稿</button>
       <% end %>
-    </li>
-    <li>
+    </div>
+    <div class="mr-1">
       <%= link_to posts_path do %>
       <button class="text-secondary btn-light rounded-pill">投稿一覧</button>
       <% end %>
-    </li>
-    <li>
+    </div>
+    <div class="mr-1">
       <%= link_to user_path(current_user.id) do %>
       <button class="text-secondary btn-light rounded-pill">マイページ</button>
       <% end %>
-    </li>
-    <li>
+    </div>
+    <div class="mr-1">
       <%= link_to rooms_path do %>
       <button class="text-secondary btn-light rounded-pill">チャット</button>
       <% end %>
-    </li>
+    </div>
       <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn-light text-secondary rounded-pill " %>
-    </li>
+    </div>
   </ul>
 </nav>
   <!--管理者のログイン時に表示-->
@@ -44,15 +43,19 @@
     <%= link_to image_tag("no_image.jpg" ,size: '80x40'), admin_posts_path %>
   </span>
   <ul class ="navbar-nav ml-10">
-    <li>
-      <%= link_to "投稿一覧", admin_posts_path, class: "nav-link text-light" %>
-    </li>
-    <li>
-      <%= link_to "会員一覧", admin_users_path, class: "nav-link text-light" %>
-    </li>
-    <li>
-      <%= button_to "ログアウト", destroy_admin_session_path, method: :delete, class: "radius" %>
-    </li>
+    <div class="mr-1">
+      <%= link_to admin_posts_path do %>
+      <button class="text-secondary btn-light rounded-pill">投稿一覧</button>
+      <% end %>
+    </div>
+    <div class="mr-1">
+      <%= link_to admin_users_path do %>
+      <button class="text-secondary btn-light rounded-pill">会員一覧</button>
+      <% end %>
+    </div>
+    <div>
+      <%= button_to "ログアウト", destroy_admin_session_path, method: :delete, class:"btn-light text-secondary rounded-pill "  %>
+    </div>
   </ul>
 </nav>
 　<!--ログアウト時に表示-->
@@ -60,15 +63,20 @@
     <nav class = "navbar navbar-expand-lg navbar-dark", style="background-color: #66CCFF;">
           <div class = "container">
       <span>
-        <%= link_to image_tag("logo.png" ,size: '110x50'), root_path %>
+        <%= link_to image_tag("logo.png" ,size: '110x60'), root_path %>
       </span>
+      <i class= "text-light", style="font-size:120%">毎日を、猫のいる暮らしに、ねこぐらし</i>
   　     <ul class ="navbar-nav ml-10">
-          <li>
-            <%= link_to "新規登録", new_user_registration_path, class: "nav-link text-light" %>
-          </li>
-          <li>
-            <%= link_to "ログイン", new_user_session_path, class: "nav-link text-light" %>
-          </li>
+          <div class="mr-1">
+            <%= link_to  new_user_registration_path do %>
+            <button class="text-secondary btn-light rounded-pill">新規登録</button>
+            <% end %>
+          </div>
+          <div>
+            <%= link_to new_user_session_path do %>
+            <button class="text-secondary btn-light rounded-pill">ログイン</button>
+            <% end %>
+          </div>
         </ul>
     </nav>
   <% end %>
