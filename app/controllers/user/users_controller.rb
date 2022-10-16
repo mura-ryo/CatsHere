@@ -10,7 +10,7 @@ class User::UsersController < ApplicationController
       render :new
     end
   end
-  
+
   def edit
     @user = User.find(params[:id])
     unless @user == current_user
@@ -20,7 +20,7 @@ class User::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    # ユーザ更新時にパスワードの値が空だった場合、パスワードを更新しない
+    # ユーザー更新時にパスワードの値が空だった場合、パスワードを更新しない
     if params[:user][:password].blank?
       params[:user].delete("password")
     end
@@ -30,7 +30,8 @@ class User::UsersController < ApplicationController
       flash[:notice] = "更新に成功しました！"
       redirect_to user_path(@user.id)
     else
-      render :edit
+      flash[:alert] = "更新に失敗しました！"
+      redirect_to edit_user_path(@user.id)
     end
   end
 
@@ -38,11 +39,11 @@ class User::UsersController < ApplicationController
   def quit
     @user = current_user
   end
-  
+
   def delete
     @user = current_user
     @user.update(is_deleted: true)
-    flash[:notice] = "これまでありがとうございました。また機会があればよろしくお願いします"
+    flash[:notice] = "ご利用いただきありがとうございました。またのご利用を心よりお待ちしております。"
     sign_out
     redirect_to root_path
   end
@@ -51,7 +52,8 @@ class User::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
-  # DM機能  
+
+  # チャット機能
     @currentUserEntry = Entry.where(user_id: current_user.id)
     @userEntry = Entry.where(user_id: @user.id)
     unless @user.id == current_user.id
@@ -69,15 +71,8 @@ class User::UsersController < ApplicationController
       end
     end
   end
-  
-  def rooms
-    @user = User.find(params[:id])
-    @room = Room.find(params[:id])
-    @rooms = Room.all
-    @entries = @room.entries
-    @users = User.all
-  end
 
+  # いいね一覧機能
   def favorites
     @user = User.find(params[:id])
     favorites = Favorite.where(user_id: @user.id).pluck(:post_id)

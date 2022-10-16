@@ -1,26 +1,47 @@
-<main>
-  <div class= "container">
-    <div class= "row">
-        <div class= "col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-        </br>
-        <h2>会員情報編集</h2>
+<div class="container">
+  <div class="row pt-5">
+    <div class="col-xl-9 auto">
+        
+      <table>
         <%= form_with model: @user, url: user_path(@user.id), method: :patch do |f| %>
-          <%= f.label :"ニックネーム" %></br>
-          <%= f.text_field :name, autofocus: true, placeholder: "ニックネーム", autocomplete: "name" %></br></br>
-          <%= f.label :"メールアドレス" %></br>
-          <%= f.email_field :email, placeholder: "メールアドレス", autocomplete: "email" %></br></br>
-          <%= f.label :"パスワード(6文字以上)" %></br>
-          <%= f.password_field :password, placeholder: "パスワード", autocomplete: "new-password" %></br></br>
-          <%= f.label :"プロフィール写真" %></br>
-          <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></br></br>
-          <%= f.label :"自己紹介文" %></br>
-          <%= f.text_area :introduction, size: "60x10", placeholder: "自己紹介", autocomplete: "introduction" %></br></br>
-          <%= f.submit "更新する", class: "btn btn-secondary" %>
+        <h4>会員情報編集</h4>
+        <tr>
+          <td>ニックネーム</td>
+          <td><%= f.text_field :name, placeholder: "ニックネーム", autofocus: true, autocomplete: "name" %></td>
+        </tr>
+        <tr>
+          <td>プロフィール画像</td>
+          <td><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></td>
+        </tr>
+        <tr>
+          <td>自己紹介</td>
+          <td  colspan="3"><%= f.text_area:introduction, size: "50x5", value: "よろしくお願いします。", autocomplete: "introduction" %></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= f.email_field :email, placeholder: "Eメール", autocomplete: "email" %></td>
+        </tr>
+        <tr>
+          <td>パスワード(6文字以上)</td>
+          <td><%= f.password_field :password, placeholder: "パスワード", autocomplete: "new-password" %></td>
+        </tr>
+        <tr>
+          <td></br></td>
+        </tr>
+        <tr class="text-left">
+          <td></td>
+          <td><%= f.submit "更新", class: "btn btn-primary ml-4" %>
+        </tr>
         <% end %>
-        <div class="col-md-5 offset-md-2 mt-3 mb-5">
-          <%= link_to "退会する", user_quit_path, class: "btn btn-danger"%>
-          </div>
-      </div>
+        <tr>
+          <td></br></td>
+        </tr>
+        <tr class="text-right">
+          <td></td>
+          <td><%= link_to "退会する", user_quit_path, class: "btn btn-outline-danger"%>
+        </tr>
+      </table>
+      
     </div>
   </div>
-</main>
+</div>

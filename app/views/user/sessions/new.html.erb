@@ -1,30 +1,37 @@
 <div class="container">
   <div class="row pt-5">
-    <div class="col-xl-8 ml-auto">
-    <%= form_with model: @user, url: user_session_path do |f| %>
-    <%= render "user/shared/error_messages", resource: resource %>
-      <h5>ログイン</h5><br/>
-      <p>会員の方はこちらからログイン</p>
-      <tr></tr>
+    <div class="col-xl-9 ml-auto">
+
       <table>
+        <%= form_with model: @user, url: user_session_path do |f| %>
+        <h4>ログイン</h4>
+        <p>会員の方はこちらからログイン</p>
         <tr>
           <td>メールアドレス</td>
-          <td><%= f.email_field :email, placeholder: "sample@example.com", autofocus: true, autocomplete: "email" ,:size=>"40"%></td>
+          <td><%= f.email_field :email, placeholder: "Eメール", autofocus: true, autocomplete: "email" %></td>
         </tr>
         <tr>
           <td>パスワード</td>
-          <td><%= f.password_field :password, autocomplete: "current_password" ,:size=>"40" %></td>
+          <td><%= f.password_field :password, placeholder: "パスワード", autocomplete: "current_password"  %></td>
         </tr>
         <tr>
-          <td></td>
-          <td><%= f.submit "ログイン", class: "btn btn-primary ml-5" %></td>
+          <td></br></td>
         </tr>
+        <tr class ="text-center">
+          <td></td>
+          <td><%= f.submit "ログイン", class: "btn btn-primary ml-3" %></td>
+        </tr>
+        <% end %>
       </table>
-          <% end %>
+
+      </br>
+      </br>
+
       <table>
         <h5>会員登録がお済みでない方</h5>
-        <p><%= render "user/shared/links" %>から新規登録を行なってください。</p>
+        <p><%= link_to "こちら", new_user_registration_path ,class:"text-blue" %>から新規登録を行なってください。</p>
       </table>
+      
     </div>
   </div>
 </div>
