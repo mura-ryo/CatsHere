@@ -14,12 +14,11 @@ class User::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      flash[:notice] = "投稿完了しました！"
+      flash[:notice] = "投稿が完了しました！"
       redirect_to posts_path(@post)
     else
-      @user = current_user
-      @posts = Post.all
-      render :index
+      flash[:alert] = "投稿が失敗しました。タイトルと本文を記載してください。"
+      redirect_to new_post_path
     end
   end
 
@@ -42,10 +41,11 @@ class User::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      flash[:notice] = "投稿をアップデートしました！"
+      flash[:notice] = "投稿を更新しました！"
       redirect_to post_path(@post.id)
     else
-      render :edit
+      flash[:alert] = "投稿の更新が失敗しました。タイトルと本文を記載してください。"
+      redirect_to edit_post_path(@post.id)
     end
   end
 
