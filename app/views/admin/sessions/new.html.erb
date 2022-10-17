@@ -1,12 +1,10 @@
 <div class="container">
-<h4 class="m-4"><span style="background-color:#eeeeee">管理者ログイン</span></h4>
-</div>
+  <div class="row pt-3">
+    <div class="col-xl-9 auto">
 
-<div class="container">
-  <div class="row">
-    <div class="col-5">
+<h4 class="m-4">管理者ログイン</h4>
+      <%= form_with model: @admin, url: admin_session_path do |f| %>
       <table class= "table table table-borderless ">
-        <%= form_with model: @admin, url: admin_session_path do |f| %>
         <tr>
           <div class="field">
             <td><%= f.label :メールアドレス %></td>
@@ -32,5 +30,3 @@
     </div>
   </div>
 </div>
-
-<%= render "admin/shared/links" %>

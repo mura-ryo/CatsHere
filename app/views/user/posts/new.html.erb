@@ -2,10 +2,11 @@
   <div class="row pt-3">
     <div class="col-xl-9 auto">
 
-    <table>
 <!-- 新規投稿 -->
       <h2>新規投稿</h2>
         <%= form_with model: @post do |f| %>
+      
+      <table>
       <tr>
         <td>タイトル</td>
         <td><%= f.text_field :title, placeholder: "タイトル" %></td>

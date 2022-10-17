@@ -1,6 +1,9 @@
+<div class="container">
+  <div class="row pt-3">
+    <div class="col-xl-9 auto">
+
         <h2>会員一覧（管理者）</h2>
-        <!-- 検索フォーム -->
-      　<%= render 'admin/searches/search' %>
+
         <table class="table table-hover table-inverse">
           <thead>
             <tr>
@@ -13,11 +16,15 @@
             <% @users.each do |user| %>
               <tr>
                 <td><%= image_tag user.get_profile_image, size: '80x80' %></td>
-                <td><%= user.name %></td>
+                <td>
+                  <%= link_to admin_user_path(user.id) do %>
+                  <%= user.name %>
+                  <% end %>
+                </td>
                 <!-- FF機能 -->
                 <td>フォロー数: <%= user.followings.count %></td>
                 <td>フォロワー数: <%= user.followers.count %></td>
-                <td><%= link_to "Show", admin_user_path(user.id) %></td>
+                <td></td>
               </tr>
             <% end %>
           </tbody>

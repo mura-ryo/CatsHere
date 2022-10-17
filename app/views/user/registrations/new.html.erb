@@ -2,8 +2,8 @@
   <div class="row pt-5">
     <div class="col-xl-9 ml-auto">
 
+      <%= form_with model: @user, url: user_registration_path do |f| %>
       <table>
-        <%= form_with model: @user, url: user_registration_path do |f| %>
         <%= render "user/shared/error_messages", resource: resource %>
         <h4>新規会員登録</h4>
         <tr>
