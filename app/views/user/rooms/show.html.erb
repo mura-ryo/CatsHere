@@ -1,8 +1,11 @@
-<h1>DM</h1>
+<div class="container">
+  <div class="row pt-3">
+    <div class="col-xl-9 auto">
 
-<h4>参加者</h4>
+<h1>チャット</h1>
+<h3>参加者</h3>
 <% @entries.each do |e| %>
-  <tr><strong><%= e.user.name %>さん</strong></tr>
+  <p><strong><%= e.user.name %>さん</strong></p>
 <% end %>
 
 <hr>
@@ -18,8 +21,8 @@
 <% end %>
 
 <%= form_with model: @message, local: true do |f| %>
-  <%= f.text_field :content, :placeholder => "メッセージを入力して下さい" , :size => 70 %>
-  <%= f.hidden_field :room_id, :value => @room.id %>
+  <%= f.text_field :content, placeholder: "メッセージを入力して下さい", size:"70" %>
+  <%= f.hidden_field :room_id, value: "@room.id" %>
   <br>
   <%= f.submit "送信する" %>
 <% end %>

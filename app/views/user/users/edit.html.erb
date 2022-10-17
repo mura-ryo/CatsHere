@@ -1,9 +1,8 @@
 <div class="container">
   <div class="row pt-5">
     <div class="col-xl-9 auto">
-        
+      <%= form_with model: @user, url: user_path(@user.id), method: :patch do |f| %>
       <table>
-        <%= form_with model: @user, url: user_path(@user.id), method: :patch do |f| %>
         <h4>会員情報編集</h4>
         <tr>
           <td>ニックネーム</td>

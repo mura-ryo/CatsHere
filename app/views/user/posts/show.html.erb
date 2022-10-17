@@ -24,8 +24,8 @@
             </tr>
             <tr></tr>
              <% if @post.user == current_user %>
-             <td><%= link_to "Edit", edit_post_path(@post), class:"btn btn-sm btn-success" %></td>
-             <td><%= link_to "Destroy", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-sm btn-danger" %></td>
+             <td><%= link_to "編集", edit_post_path(@post), class:"btn btn-sm btn-success" %></td>
+             <td><%= link_to "削除", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-sm btn-danger" %></td>
              <% end %>
             </tr>
              <!-- ファボ機能 -->
