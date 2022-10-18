@@ -1,38 +1,56 @@
 <div class="container">
-  <div class="row pt-5">
-    <div class="col-xl-9 auto">
+  <div class="row pt-3">
+    <div class="col-3"></div>
+    <div class="col-6 auto">
+      
+      <h2 class="text-center my-5">会員情報編集（管理者）</h2>
+      
       <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch do |f| %>
       <table>
-        <h4>会員情報編集（管理者）</h4>
         <tr>
           <td>ニックネーム</td>
           <td><%= f.text_field :name, placeholder: "ニックネーム", autofocus: true, autocomplete: "name" %></td>
+        </tr>
+        <tr>
+          <td></br></td>
         </tr>
         <tr>
           <td>プロフィール画像</td>
           <td><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></td>
         </tr>
         <tr>
+          <td></br></td>
+        </tr>
+        <tr>
           <td>自己紹介</td>
           <td  colspan="3"><%= f.text_area:introduction, size: "50x5", value: "よろしくお願いします。", autocomplete: "introduction" %></td>
+        </tr>
+        <tr>
+          <td></br></td>
         </tr>
         <tr>
           <td>メールアドレス</td>
           <td><%= f.email_field :email, placeholder: "Eメール", autocomplete: "email" %></td>
         </tr>
         <tr>
+          <td></br></td>
+        </tr>
+        <tr>
           <td>パスワード(6文字以上)</td>
           <td><%= f.password_field :password, placeholder: "パスワード", autocomplete: "new-password" %></td>
         </tr>
         <tr>
-          <tr>
-            <td><%= f.label :"会員ステータス" %></td>
-        　   <td><%= f.radio_button :is_deleted, false %>
-        　       <%= f.label :is_deleted, "有効" %>
-        　       <%= f.radio_button :is_deleted, true %>
-        　       <%= f.label :is_deleted, "退会済" %>
+          <td></br></td>
+        </tr>
+        <tr>
+          <td>会員ステータス</td>
+          <td><%= f.radio_button :is_deleted, false %>
+              <%= f.label :is_deleted, "有効" %>
+        　     <%= f.radio_button :is_deleted, true %>
+        　     <%= f.label :is_deleted, "退会済" %>
         　   </td>
-          </tr>
+        </tr>
+        <tr>
           <td></br></td>
         </tr>
         <tr class="text-left">

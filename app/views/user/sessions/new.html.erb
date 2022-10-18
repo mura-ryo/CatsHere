@@ -1,14 +1,22 @@
 <div class="container">
   <div class="row pt-5">
-    <div class="col-xl-9 ml-auto">
+    <div class="col-4"></div>
+    <div class="col-4 auto">
+
+      <h3 class="text-center my-5">ログイン</h3>
 
       <%= form_with model: @user, url: user_session_path do |f| %>
       <table>
-        <h4>ログイン</h4>
         <p>会員の方はこちらからログイン</p>
         <tr>
+        <tr>
+          <td></br></td>
+        </tr>
           <td>メールアドレス</td>
           <td><%= f.email_field :email, placeholder: "Eメール", autofocus: true, autocomplete: "email" %></td>
+        </tr>
+        <tr>
+          <td></br></td>
         </tr>
         <tr>
           <td>パスワード</td>
@@ -31,7 +39,7 @@
         <h5>会員登録がお済みでない方</h5>
         <p><%= link_to "こちら", new_user_registration_path ,class:"text-blue" %>から新規登録を行なってください。</p>
       </table>
-      
+
     </div>
   </div>
 </div>

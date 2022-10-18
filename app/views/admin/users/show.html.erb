@@ -1,46 +1,54 @@
 <div class="container">
   <div class="row pt-3">
-    <div class="col-xl-9 auto">
-<!-- ユーザーの詳細 -->
-        <h2>会員情報（管理者）</h2>
-          <table class="table">
-            <tr><%= image_tag @user.get_profile_image, size:'100x100' %></tr>
-            <tbody>
-              <tr>
-                <th>ニックネーム</th>
-                <th><%= @user.name %></th>
-              </tr>
-              <tr>
-                <th>自己紹介文</th>
-                <th><%= @user.introduction %></th>
-              </tr>
-            </tbody>
-            <tr>
-              <th>follows</th>
-              <th><%= link_to user_followings_path(@user.id) do %>
-              <%= @user.followings.count %>
-              <% end %>
-              </th>
-            </tr>
-            <tr>
-              <th>followers</th>
-              <th><%= link_to user_followers_path(@user.id) do %>
-              <%= @user.followers.count %>
-              <% end %>
-              </th>
-            </tr>
-            <tr>
-                <td>会員ステータス</td>
-              　<% if @user.is_deleted == false %>
-              　<td>有効</td>
-                <% else %>
-                <td>退会</td>
-                <% end %>
-              </tr>
-          </table>
-
-        <div class='row'>
-            <%= link_to edit_admin_user_path(@user.id), class: "btn btn-outline-secondary btn-block" do %>
-            <i class="fas fa-user-cog"></i>
+    <div class="col-3"></div>
+    <div class="col-6 auto">
+      
+      <h2 class="text-center my-5">会員情報（管理者）</h2>
+      <!-- ユーザーの詳細 -->
+      <table class="table">
+        <tr><%= image_tag @user.get_profile_image, size:'100x100' %></tr>
+        <tr>
+          <th>ニックネーム</th>
+          <th><%= @user.name %></th>
+        </tr>
+        <tr>
+          <th>自己紹介文</th>
+          <th><%= @user.introduction %></th>
+        </tr>
+        <tr>
+          <th>フォロー中</th>
+          <th>
+            <%= link_to user_followings_path(@user.id) do %>
+            <%= @user.followings.count %>
+            <% end %>
+          </th>
+        </tr>
+        <tr>
+          <th>フォロワー</th>
+          <th>
+            <%= link_to user_followers_path(@user.id) do %>
+            <%= @user.followers.count %>
+            <% end %>
+          </th>
+        </tr>
+        <tr>
+          <td>会員ステータス</td>
+          <% if @user.is_deleted == false %>
+          <td>有効</td>
+          <% else %>
+          <td>退会</td>
           <% end %>
-        </div>
+        </tr>
+      　　<tr>
+      　　　　  <td colspan="2", class="text-center">
+      　　　　　<%= link_to "編集", edit_admin_user_path(@user.id), class: "btn btn-secondary" %>
+      　　　　  </td>
+      　　</tr>
+      </table>
+      
+    </div>
+  </div>
+</div>
+
+    <!-- ユーザー本人の投稿 -->
+    <%= render 'admin/posts/myposts' %>
