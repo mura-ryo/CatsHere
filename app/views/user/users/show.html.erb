@@ -1,49 +1,52 @@
 <div class="container">
   <div class="row pt-3">
-    <div class="col-10 auto">
+    <div class="col-2"></div>
+    <div class="col-8 auto">
 
-<!-- ユーザーの詳細 -->
-<%= render 'user/users/userinfo', user: @user  %>
-
-<table class="my-3 table table-borderless">
+      <!-- ユーザーの詳細 -->
+      <%= render 'user/users/userinfo', user: @user  %>
   
-              <tr>
-              <th><% if current_user == @user %>
-                <%= link_to "編集", edit_user_path(@user.id), class: "btn btn-secondary" %>
-                <% end %>
-              </th>
-              <th></th>
-            </tr>
+      <table class="my-3 table table-borderless">
+        <tr>
+          <td>
+            <% if current_user == @user %>
+            <%= link_to "編集", edit_user_path(@user.id), class: "btn btn-secondary" %>
+            <% end %>
+          </td>
+        </tr>
+        
+        <tr>
+          <td><%= link_to "いいね一覧", favorites_user_path(@user.id), class: 'btn btn-info'  %></td>
+  
+        　<!-- フォロー機能 -->
+        　<% if @user != current_user %>
+        　　<% if current_user.following?(@user) %>
+        　     <td><%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete, class: "btn btn-info" %></td>
+        　　  <% else %>
+        　     <td><%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class: "btn btn-success" %></td>
+        　　  <% end %>
+        　<% end %>
+        　
+        　<!-- チャット機能 -->
+        　<% unless @user.id == current_user.id %>
+        　   <% if @isRoom == true %>
+        　     <td><%= link_to "チャットへ", room_path(@roomId), class: "btn btn-primary" %></td>
+        　   <% else %>
+        　     <%= form_with model: @room, local: true do |f| %>
+        　       <%= fields_for @entry do |e| %>
+        　         <%= e.hidden_field :user_id, value: @user.id %>
+        　       <% end %>
+        　       <td><%= f.submit "チャットを始める", class:"btn btn-primary"%></td>
+        　     <% end %>
+        　   <% end %>
+        　<% end %>
+        　
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
 
-  <td><%= link_to "いいね一覧", favorites_user_path(@user.id), class: 'btn btn-info'  %></td>
 
-<!-- フォロー機能 -->
-<% if @user != current_user %>
-　<% if current_user.following?(@user) %>
-    <td><%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete, class: "btn btn-info" %></td>
-  <% else %>
-    <td><%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class: "btn btn-success" %></td>
-  <% end %>
-<% end %>
-
-<!-- チャット機能 -->
-<% unless @user.id == current_user.id %>
-  <% if @isRoom == true %>
-    <td><%= link_to "チャットへ", room_path(@roomId), class: "btn btn-primary" %></td>
-  <% else %>
-    <%= form_with model: @room, local: true do |f| %>
-      <%= fields_for @entry do |e| %>
-        <%= e.hidden_field :user_id, value: @user.id %>
-      <% end %>
-      <%= f.submit "チャットを始める", class:"btn btn-primary"%>
-    <% end %>
-  <% end %>
-<% end %>
-
-
-  </table>
-
-
-
-  <!-- ユーザー本人の投稿 -->
-  <%= render 'user/posts/myposts' %>
+    <!-- ユーザー本人の投稿 -->
+    <%= render 'user/posts/myposts' %>

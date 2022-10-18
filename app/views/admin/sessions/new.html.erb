@@ -1,24 +1,29 @@
 <div class="container">
-  <div class="row pt-3">
-    <div class="col-xl-9 auto">
+  <div class="row pt-5">
+    <div class="col-4"></div>
+    <div class="col-4 auto">
 
-<h4 class="m-4">管理者ログイン</h4>
+      <h3 class="text-center my-5">管理者ログイン</h3>
+      
       <%= form_with model: @admin, url: admin_session_path do |f| %>
-      <table class= "table table table-borderless ">
+      <table>
         <tr>
-          <div class="field">
-            <td><%= f.label :メールアドレス %></td>
-            <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
-          </div>
         </tr>
-
+          <td>メールアドレス</td>
+          <td><%= f.email_field :email, placeholder: "Eメール", autofocus: true, autocomplete: "email" %></td>
+        </tr>
         <tr>
-          <div class="field">
-            <td><%= f.label :パスワード %></td>
-            <td><%= f.password_field :password, autocomplete: "current-password" %></td>
-          </div>
+          <td></br></td>
         </tr>
-
+        <tr>
+        <tr>
+          <td>パスワード</td>
+          <td><%= f.password_field :password, placeholder: "パスワード", autocomplete: "current_password"  %></td>
+        </tr>
+        </tr>
+        <tr>
+          <td></br></td>
+        </tr>
         <tr>
           <div class="actions">
             <td></td>

@@ -1,50 +1,63 @@
-<main>
-  <div class= "container">
-    <div class= "row">
-      <div class= "col-md-3">
-        <h2>投稿詳細</h2>
-        <table class="table table-hover table-inverse">
-          <tbody>
-            <tr>
-             <td>
-               <%= image_tag @post.user.get_profile_image, size:"80x80" %></br>
-               <%= link_to user_path(@user.id) do %><%= @user.name %><% end %>
-             </td>
-            </tr>
-            <tr>
-             <td><%= @post.title %></td>
-            </tr>
-            <tr>
-              <td>
-                <%= image_tag @post.get_image, size:'80x80' %>
-              </td>
-            </tr>
-            <tr>
-             <td><%= @post.body %></td>
-            </tr>
-            <tr></tr>
-             <% if @post.user == current_user %>
-             <td><%= link_to "編集", edit_post_path(@post), class:"btn btn-sm btn-success" %></td>
-             <td><%= link_to "削除", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-sm btn-danger" %></td>
+<div class="container">
+  <div class="row pt-3">
+    <div class="col-2"></div>
+    <div class="col-8 auto">
+
+      <h2 class="text-center my-5">投稿詳細</h2>
+
+      <table class="table table-borderless text-center">
+        <tbody>
+          <tr>
+           <td colspan="2", class="h3"><%= @post.title %></td>
+          </tr>
+          <tr>
+            <td colspan="2"><%= image_tag @post.get_image, size:"400x400" %></td>
+          </tr>
+          <tr>
+           <td colspan="2"><%= @post.body %></td>
+          </tr>
+          <tr>
+           <% if @post.user == current_user %>
+           <td><%= link_to "編集", edit_post_path(@post), class:"btn btn-sm btn-success" %></td>
+           <td><%= link_to "削除", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-sm btn-danger" %></td>
+           <% end %>
+          </tr>
+           <!-- ファボ機能 -->
+          <tr>
+　　        <td id=favorite_buttons_<%= @post.id %>>
+             <%= render 'user/favorites/favorite-btn', post: @post %>
+      　     </td>
+      　　    <td>コメント数: <%= @post.post_comments.count %></td>
+      　　</tr>
+        </tbody>
+      </table>
+
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+           <td class="text-center">
+             <%= image_tag @post.user.get_profile_image, size:"80x80" %>
+             <%= link_to user_path(@user.id) do %>
+             <%= @user.name %>
              <% end %>
-            </tr>
-             <!-- ファボ機能 -->
-　　         <td id=favorite_buttons_<%= @post.id %>>
-               <%= render 'user/favorites/favorite-btn', post: @post %>
-        　    </td>
-        　　   <td>コメント数: <%= @post.post_comments.count %></td>
-          </tbody>
-          </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-2"></div>
+
+    <div class="col-3"></div>
+    <div class="col-6">
         <!-- コメ一覧 -->
-        <div id= comments-area_<%= @post.id %>>
+        <div class="text-center", id= comments-area_<%= @post.id %>>
           <%= render 'user/post_comments/index', post: @post %>
         </div>
         <!-- コメ機能 -->
-        <div id= form-area_<%= @post.id %>>
+        <div class="text-center", id= form-area_<%= @post.id %>>
           <%= render 'user/post_comments/comment', post: @post, post_comment: @post_comment  %>
         </div>
          <!---->
      </div>
      </div>
   </div>
-</main>
