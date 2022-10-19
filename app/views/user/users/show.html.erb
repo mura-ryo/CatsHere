@@ -13,9 +13,7 @@
             <%= link_to "編集", edit_user_path(@user.id), class: "btn btn-secondary" %>
             <% end %>
           </td>
-        </tr>
-        
-        <tr>
+          
           <td><%= link_to "いいね一覧", favorites_user_path(@user.id), class: 'btn btn-info'  %></td>
   
         　<!-- フォロー機能 -->
@@ -28,13 +26,13 @@
         　<% end %>
         　
         　<!-- チャット機能 -->
-        　<% unless @user.id == current_user.id %>
+        　<% unless @user == current_user %>
         　   <% if @isRoom == true %>
         　     <td><%= link_to "チャットへ", room_path(@roomId), class: "btn btn-primary" %></td>
         　   <% else %>
-        　     <%= form_with model: @room, local: true do |f| %>
+        　     <%= form_with model: @room  do |f| %>
         　       <%= fields_for @entry do |e| %>
-        　         <%= e.hidden_field :user_id, value: @user.id %>
+        　         <%= e.hidden_field :user_id %>
         　       <% end %>
         　       <td><%= f.submit "チャットを始める", class:"btn btn-primary"%></td>
         　     <% end %>

@@ -51,7 +51,7 @@ class User::UsersController < ApplicationController
   # 会員情報
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.page(params[:page]).per(10).order(created_at: :desc)
   # チャット機能
     @currentUserEntry = Entry.where(user_id: current_user.id)
     @userEntry = Entry.where(user_id: @user.id)

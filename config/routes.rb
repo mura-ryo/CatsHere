@@ -31,7 +31,8 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
-
+    
+    get 'message/:id', to: 'messages#show', as: 'message'
     resources :messages, :only => [:create]
     resources :rooms, :only => [:create, :show, :index]
 
