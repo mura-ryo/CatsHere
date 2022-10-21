@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row justify-content-start">
+
+    <div class="col-3 pt-5">
+      <div class="rounded text-center p-3", style="border:1px solid black; width: 250px; height: 400px;background:url(assets/field.jpg); background-size:cover;">
+        <p>~Cats Here~</p>
+			  <h3 style="font-weight: bold">ねこぐらし</h3>
+        <p>thanks for all cats</p>
+        <p>
+          <%= link_to about_path do %>
+          <button class= "btn-light text-secondary btn-lg rounded-pill", style="background-color: #FFCC99;box-shadow: 2px 2px gray;">私たちについて</button>
+          <% end %>
+        </p>
+        <p><%= button_to "ゲストログイン", guest_sign_in_path, method: :post, class:"btn-light btn-lg text-secondary rounded-pill", style:"background-color: #FFCC99;box-shadow: 2px 2px gray;" %></p>
+        <p>※ゲストログイン後にマイページから登録情報を編集し、継続してご利用いただくことも可能です。</p>
+      </div>
+    </div>
+
+    <div class="col-1"></div>
+
+    <div class="col-6">
+      <h4 class="text-center px-5 py-2">今月のねこ</h4>
+      <div>
+      <%= image_tag "3.jpg" , style:"border:1px solid black; width: 500px; height: 500px;", class:"rounded" %>
+      </div>
+    </div>
+
+  </div>
+</div>

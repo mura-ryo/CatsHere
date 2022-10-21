@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row pt-3">
+    <div class="col-2"></div>
+    <div class="col-8 auto">
+      
+      <h2 class="text-center my-5">投稿詳細（管理者）</h2>
+      
+      <table class="table table-borderless text-center">
+        <tbody>
+          <tr>
+           <td colspan="2", class="h3"><%= @post.title %></td>
+          </tr>
+          <tr>
+            <td colspan="2"><%= image_tag @post.get_image, size:"400x400" %></td>
+          </tr>
+          <tr>
+           <td colspan="2"><%= @post.body %></td>
+          </tr>
+          <tr>
+           <td colspan="2"><%= link_to "削除", admin_post_path(@post), method: :delete, "data-confirm" => "大切な会員様の投稿です。本当に削除しますか？", class:"btn btn-sm btn-danger" %></td>
+          </tr>
+          <tr>
+           <!-- ファボ機能 -->
+　　       <td id=favorite_buttons_<%= @post.id %>>
+             <%= render 'admin/favorites/favorite-btn', post: @post %>
+      　    </td>
+      　　   <td>コメント数: <%= @post.post_comments.count %></td>
+      　   </tr>
+        </tbody>
+      </table>
+    </div>  
+      
+    <div class="col-2"></div>
+    <div class="col-3"></div>
+    <div class="col-6">
+    
+      <!-- コメ一覧 -->
+      <div class="text-center", id= comments-area_<%= @post.id %>>
+      <%= render 'admin/post_comments/index', post: @post %>
+      </div>
+    </div>
+  </div>
+</div>

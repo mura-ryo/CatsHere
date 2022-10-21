@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mt-5">
+      <h3 class="text-center">
+        <strong>本当に退会しますか？</strong>
+      </h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 mt-5">
+      <p class="text-center">
+      退会すると、会員情報や<br>
+      これまでの投稿が閲覧できなくなります。<br>
+      退会する場合は、「退会する」をクリックしてください。
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 offset-md-4 mt-5 mb-5">
+      <%= link_to "退会しない", user_path(current_user), class: "btn btn-primary" %>
+    </div>
+    <div class="col-md-3 mt-5 mb-5">
+      <%= link_to "退会する", user_delete_path, method: :patch, class: "btn btn-outline-danger" %>
+    </div>
+  </div>
+</div>

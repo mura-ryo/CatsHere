@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row pt-3">
+    <div class="col-3"></div>
+    <div class="col-6 auto">
+
+      <h2 class="text-center my-5">会員情報編集</h2>
+
+      <%= form_with model: @user, url: user_path(@user.id), method: :patch do |f| %>
+      <table>
+        <tr>
+          <td>ニックネーム</td>
+          <td><%= f.text_field :name, placeholder: "ニックネーム", autofocus: true, autocomplete: "name" %></td>
+        </tr>
+        <tr>
+          <td></br></td>
+        </tr>
+        <tr>
+          <td>プロフィール画像</td>
+          <td><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></td>
+        </tr>
+        <tr>
+          <td></br></td>
+        </tr>
+        <tr>
+          <td>自己紹介</td>
+          <td  colspan="3"><%= f.text_area:introduction, size: "50x5", value: "よろしくお願いします。", autocomplete: "introduction" %></td>
+        </tr>
+        <tr>
+          <td></br></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= f.email_field :email, placeholder: "Eメール", autocomplete: "email" %></td>
+        </tr>
+        <tr>
+          <td></br></td>
+        </tr>
+        <tr>
+          <td>パスワード(6文字以上)</td>
+          <td><%= f.password_field :password, placeholder: "パスワード", autocomplete: "new-password" %></td>
+        </tr>
+        <tr>
+          <td></br></td>
+        </tr>
+        <tr class="text-center">
+          <td></td>
+          <td><%= f.submit "更新", class: "btn btn-primary ml-4" %>
+        </tr>
+        <% end %>
+        <tr>
+          <td></br></td>
+        </tr>
+        <tr class="text-right">
+          <td></td>
+          <td><%= link_to "退会する", user_quit_path, class: "btn btn-outline-danger"%>
+        </tr>
+      </table>
+
+    </div>
+  </div>
+</div>
