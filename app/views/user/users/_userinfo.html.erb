@@ -1,28 +1,34 @@
-<h2 class="text-center my-5">ユーザー情報</h2>
+<h2 class="text-center my-5">会員情報</h2>
   <table class="table">
-    <tr><%= image_tag current_user.get_profile_image, size:'100x100' %></tr>
+    <tbody>
+    <tr>
+      <td colspan="2", class="text-center">
+      <%= image_tag user.get_profile_image, size:'150x150' %>
+      </td>
+    </tr>
     <tr>
       <th>ニックネーム</th>
-      <th><%= user.name %></th>
+      <td><%= user.name %></td>
     </tr>
     <tr>
       <th>自己紹介</th>
-      <th><%= user.introduction %></th>
+      <td><%= user.introduction %></td>
     </tr>
     <tr>
       <th>フォロー中</th>
-      <th>
+      <td>
         <%= link_to user_followings_path(user.id) do %>
         <%= user.followings.count %>
         <% end %>
-      </th>
+      </td>
     </tr>
     <tr>
       <th>フォロワー</th>
-      <th>
+      <td>
         <%= link_to user_followers_path(user.id) do %>
         <%= user.followers.count %>
         <% end %>
-      </th>
+      </td>
     </tr>
+    </tbody>
   </table>
