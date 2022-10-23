@@ -2,9 +2,9 @@
   <div class="row pt-3">
     <div class="col-2"></div>
     <div class="col-8 auto">
-      
+
       <h2 class="text-center my-5">投稿一覧</h2>
-        
+
       <!-- 検索フォーム -->
       <div class="text-right"><%= render 'user/searches/search' %></div>
 
@@ -34,8 +34,8 @@
                 <%= post.title %>
                 <% end %>
               </td>
-              <td>
-                <%= image_tag post.get_image, size:'80x80' %>
+              <td class="text-center align-middle">
+                <%= image_tag post.get_image, style:"width: auto; height: 100px;" %>
               </td>
               <td colspan="3"></td>
             </tr>
@@ -45,4 +45,4 @@
       <div class="text-center"><%= paginate @posts %></div>
     </div>
   </div>
-</div>        
+</div>

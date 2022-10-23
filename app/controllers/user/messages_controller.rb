@@ -2,19 +2,19 @@ class User::MessagesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    if Entry.where(:user_id => current_user.id, :room_id => params[:message][:room_id]).present?
-     @message = current_user.messages.new(message_params)
-     @message.save
-      redirect_to "/rooms/#{@message.room_id}"
+    @message = Message.new(message_params)
+    @message.user_id = current_user.id
+    if @message.save
+      redirect_to room_path(@message.room)
     else
-      redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location: root_path) #直前のページにリダイレクト
     end
   end
-  
+
   private
- 
+
   def message_params
-  params.require(:message).permit(:content, :room_id)
+     params.require(:message).permit(:room_id, :content )
   end
- 
+
 end

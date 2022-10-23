@@ -7,26 +7,28 @@
       </td>
     </tr>
     <tr>
-      <th>ニックネーム</th>
-      <td><%= user.name %></td>
+      <th class="text-center">ニックネーム：</th>
+      <td class="text-left align-middle"><%= @user.name %></td>
     </tr>
     <tr>
-      <th>自己紹介</th>
-      <td><%= user.introduction %></td>
+      <th class="text-center">自己紹介：</th>
+      <td class="text-left align-middle">
+        <%= h(@user.introduction).gsub(/\n|\r|\r\n/, "<br>").html_safe %>
+      </td>
     </tr>
     <tr>
-      <th>フォロー中</th>
-      <td>
+      <th class="text-center">フォロー中：</th>
+      <td class="text-left align-middle">
         <%= link_to user_followings_path(user.id) do %>
-        <%= user.followings.count %>
+        <%= @user.followings.count %>
         <% end %>
       </td>
     </tr>
     <tr>
-      <th>フォロワー</th>
-      <td>
+      <th class="text-center">フォロワー：</th>
+      <td class="text-left align-middle">
         <%= link_to user_followers_path(user.id) do %>
-        <%= user.followers.count %>
+        <%= @user.followers.count %>
         <% end %>
       </td>
     </tr>

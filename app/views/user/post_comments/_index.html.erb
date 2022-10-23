@@ -8,7 +8,9 @@
             <%= post_comment.user.name %>
           <% end %>
         </td>
-        <td class="text-center align-middle"><%= post_comment.comment %></td>
+        <td class="text-center align-middle">
+          <%= post_comment.comment.gsub(/\n|\r|\r\n/, "<br>").html_safe %>
+          </td>
         <td class="text-center align-middle">
           <% if post_comment.user == current_user %>
             <%= link_to "削除", post_post_comment_path(post, post_comment), method: :delete, remote: true, class: "btn btn-danger btn-sm" %>

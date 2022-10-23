@@ -16,38 +16,16 @@ class User::RoomsController < ApplicationController
   def create
     @room = Room.create
     @entryCurrentUser = Entry.create(user_id: current_user.id, room_id: @room.id)
-    @entryUser = Entry.create(entry_room_params)
+    @entryUser = Entry.create(user_id: params[:entry][:user_id], room_id: @room.id)
     redirect_to room_path(@room.id)
   end
 
   def show
-    @user = User.find(params[:id])
-    rooms = current_user.entries.pluck(:room_id)
-    user_room = Entry.find_by(user_id: @user.id, room_id: rooms)
-  if user_room.nil?
-    @roomnew = Room.new
-    @roomnew.save
     @room = Room.find(params[:id])
-    Entry.create(user_id: @user.id, room_id: @room.id)
-    Entry.create(user_id: current_user.id, room_id: @room.id)
-  else
-    @entryroom = user_room.room
-  end
-    @room = Room.find(params[:id])
-    @messages = @room.messages
-    @message = Message.new(room_id: @room.id)
+    @messages = @room.messages.all
+    @message = Message.new
     @entries = @room.entries
     @another_entry = @entries.where.not(user_id: current_user.id).first
   end
 
-  private
-  
-  def entry_room_params
-    params.require(:entry).permit(:user_id, :room_id).merge(room_id: @room.id)
-  end
-
-  def message_params
-    params.permit(:content, :room_id)
-  end
-  
 end

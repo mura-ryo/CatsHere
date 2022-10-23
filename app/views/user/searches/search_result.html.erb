@@ -18,9 +18,16 @@
           <% @users.each do |user| %>
           <tbody>
             <tr>
-              <td><%= image_tag user.get_profile_image, size: '50x50' %></td>
-              <td class="text-center align-middle"><%= user.name %></td>
-              <td class="text-center align-middle"><%= link_to "詳細", user_path(user.id) %></td>
+              <td class="text-center align-middle">
+                <%= link_to user_path(user.id) do %>
+                <%= image_tag user.get_profile_image, style:"width: auto; height: 70px;" %>
+                <% end %>
+              </td>
+              <td class="text-center align-middle">
+                <%= link_to user_path(user.id) do %>
+                <%= user.name %>
+                <% end %>
+              </td>
             </tr>
           </tbody>
           <% end %>
@@ -28,7 +35,6 @@
         <!--検索対象モデルが会員ではない時(= 検索対象モデルが投稿の時) -->
           <thead>
             <tr>
-              <th></th>
               <th class="text-center">ニックネーム</th>
               <th class="text-center">タイトル</th>
               <th colspan="2"></th>
@@ -37,18 +43,20 @@
           <% @posts.each do |post| %>
           <tbody>
             <tr>
-              <td>
-                <%= link_to user_path(post.user) do %>
-                <%= image_tag post.user.get_profile_image, size:'80x80' %>
-                <% end %>
-              </td>
               <td class="text-center align-middle">
                 <%= link_to user_path(post.user) do %>
                 <%= post.user.name %>
                 <% end %>
               </td>
-              <td class="text-center align-middle"><%= post.title %></td>
-              <td class="text-center align-middle"><%= link_to "詳細", post_path(post.id) %></td>
+              <td class="text-center align-middle">
+                <%= link_to post_path(post.id) do %>
+                <%= post.title %></td>
+                <% end %>
+              <td class="text-center">
+                <%= link_to post_path(post.id) do %>
+                <%= image_tag post.get_image, style:"width: auto; height: 70px;" %>
+                <% end %>
+              </td>
               </tr>
             <% end %>
           </tbody>
