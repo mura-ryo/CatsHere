@@ -7,18 +7,21 @@
 
         <% @posts.each do |post| %>
           <tr>
-            <td>
-              <%= image_tag post.user.get_profile_image, size:'50x50' %>
+            <td class="text-center align-middle">
+              <%= post.created_at.strftime("%Y-%m-%d %H:%M") %>
             </td>
-            <td>
+            <td class="text-center align-middle">
               <%= link_to admin_user_path(post.user) do %>
               <%= post.user.name %>
               <% end %>
             </td>
-            <td>
+            <td class="text-center align-middle">
               <%= link_to admin_post_path(post.id) do %>
               <%= post.title %>
               <% end %>
+            </td>
+            <td class="text-center align-middle">
+              <%= image_tag post.get_image, size:'50x50' %>
             </td>
             <td colspan="3"></td>
           </tr>

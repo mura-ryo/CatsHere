@@ -15,13 +15,13 @@
 
   <body style= "background-color: #FFFFEE; font-family:Serif">
     <%= render 'layouts/header' %>
-    
+
     <% if flash[:notice] %>
       <div class="alert alert-info">
         <%= flash[:notice] %>
       </div>
     <% end %>
-    
+
     <% if flash[:alert] %>
       <div class="alert alert-danger">
         <%= flash[:alert] %>
@@ -31,8 +31,8 @@
     <main style= "padding-bottom: 150px;">
       <%= yield %>
     </main>
-    
+
     <%= render 'layouts/footer' %>
-    
+
   </body>
 </html>

@@ -12,9 +12,9 @@
         <thead>
           <tr>
             <th class="text-center">投稿日時</th>
-            <th class="text-center"></th>
             <th class="text-center">ニックネーム</th>
             <th class="text-center">タイトル</th>
+            <th class="text-center"></th>
             <th colspan="3"></th>
           </tr>
         </thead>
@@ -23,9 +23,6 @@
             <tr>
               <td class="text-center align-middle">
                 <%= post.created_at.strftime("%Y-%m-%d %H:%M") %>
-              </td>
-              <td>
-                <%= image_tag post.user.get_profile_image, size:'80x80' %>
               </td>
               <td class="text-center align-middle">
                 <%= link_to user_path(post.user) do %>
@@ -36,6 +33,9 @@
                 <%= link_to post_path(post.id) do %>
                 <%= post.title %>
                 <% end %>
+              </td>
+              <td>
+                <%= image_tag post.get_image, size:'80x80' %>
               </td>
               <td colspan="3"></td>
             </tr>

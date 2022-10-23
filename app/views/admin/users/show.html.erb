@@ -6,7 +6,11 @@
       <h2 class="text-center my-5">会員情報（管理者）</h2>
       <!-- ユーザーの詳細 -->
       <table class="table">
-        <tr><%= image_tag @user.get_profile_image, size:'100x100' %></tr>
+        <tr>
+          <td colspan="2", class="text-center">
+            <%= image_tag @user.get_profile_image, size:'150x150' %>
+          </td>
+        </tr>
         <tr>
           <th>ニックネーム</th>
           <th><%= @user.name %></th>
@@ -18,17 +22,13 @@
         <tr>
           <th>フォロー中</th>
           <th>
-            <%= link_to user_followings_path(@user.id) do %>
             <%= @user.followings.count %>
-            <% end %>
           </th>
         </tr>
         <tr>
           <th>フォロワー</th>
           <th>
-            <%= link_to user_followers_path(@user.id) do %>
             <%= @user.followers.count %>
-            <% end %>
           </th>
         </tr>
         <tr>
