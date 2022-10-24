@@ -35,7 +35,9 @@
                 <% end %>
               </td>
               <td class="text-center align-middle">
-                <%= image_tag post.get_image, style:"width: auto; height: 100px;" %>
+                <%= link_to post_path(post.id) do %>
+                <%= image_tag post.get_image, style:"width: auto; height: 120px;" %>
+                <% end %>
               </td>
               <td colspan="3"></td>
             </tr>
