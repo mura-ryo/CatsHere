@@ -2,50 +2,58 @@
   <div class="row pt-3">
     <div class="col-3"></div>
     <div class="col-6 auto">
-      
+
       <h2 class="text-center my-5">会員情報（管理者）</h2>
       <!-- ユーザーの詳細 -->
       <table class="table">
+        <tbody>
         <tr>
           <td colspan="2", class="text-center">
-            <%= image_tag @user.get_profile_image, size:'150x150' %>
+            <%= image_tag @user.get_profile_image, style:"width: auto; height: 300px;" %>
           </td>
         </tr>
         <tr>
-          <th>ニックネーム</th>
-          <th><%= @user.name %></th>
+          <th class="text-center">ニックネーム</th>
+          <td class="text-left align-middle">
+            <%= @user.name %>
+          </td>
         </tr>
         <tr>
-          <th>自己紹介文</th>
-          <th><%= @user.introduction %></th>
+          <th class="text-center">自己紹介文</th>
+          <td class="text-left align-middle">
+            <%= @user.introduction %>
+          </td>
         </tr>
         <tr>
-          <th>フォロー中</th>
-          <th>
+          <th class="text-center">フォロー中</th>
+          <td class="text-left align-middle">
             <%= @user.followings.count %>
-          </th>
+          </td>
         </tr>
         <tr>
-          <th>フォロワー</th>
-          <th>
+          <th class="text-center">フォロワー</th>
+          <td class="text-left align-middle">
             <%= @user.followers.count %>
-          </th>
+          </td>
         </tr>
         <tr>
-          <td>会員ステータス</td>
+          <th>会員ステータス</th>
           <% if @user.is_deleted == false %>
-          <td>有効</td>
+          <td class="text-left align-middle">
+            有効
           <% else %>
-          <td>退会</td>
+            退会
+          </td>
           <% end %>
         </tr>
-      　　<tr>
-      　　　　  <td colspan="2", class="text-center">
-      　　　　　<%= link_to "編集", edit_admin_user_path(@user.id), class: "btn btn-secondary" %>
-      　　　　  </td>
-      　　</tr>
+      　<tr>
+      　　  <td colspan="2", class="text-center">
+      　　  　<%= link_to "編集", edit_admin_user_path(@user.id), class: "btn btn-secondary" %>
+      　　  </td>
+      　</tr>
+      　</tbody>
       </table>
-      
+
     </div>
   </div>
 </div>
