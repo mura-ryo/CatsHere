@@ -31,7 +31,9 @@
                 <% end %>
               </td>
               <td>
-                <%= image_tag post.get_image, style:"width: auto; height: 100px;" %>
+                <%= link_to post_path(post.id) do %>
+                <%= image_tag post.get_image, style:"width: auto; height: 120px;" %>
+                <% end %>
               </td>
             </tr>
           <% end %>
