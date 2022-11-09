@@ -4,7 +4,7 @@
     <div class="col-6 auto">
 
     <h2 class="text-center my-5">フォロー中</h2>
-    
+
       <% if @users.count == 0 %>
         <h3 class="text-center">ユーザーはいません</h3>
       <% else %>
@@ -21,7 +21,11 @@
           <tbody>
           <% @users.each do |user| %>
             <tr>
-              <td><%= image_tag user.get_profile_image, size: '50x50' %></td>
+              <td>
+                <%= link_to user_path(user) do %>
+                <%= image_tag user.get_profile_image, style:"width: auto; height: 150px;" %>
+                <% end %>
+              </td>
               <td class="text-center align-middle">
                 <%= link_to user_path(user) do %>
                 <%= user.name %>
@@ -38,7 +42,7 @@
           </tbody>
         </table>
       <% end %>
-      
+
    </div>
   </div>
-</div>        
+</div>

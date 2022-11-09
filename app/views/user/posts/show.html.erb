@@ -14,7 +14,7 @@
             <td colspan="2"><%= image_tag @post.get_image, style:"width: auto; height: 400px;" %></td>
           </tr>
           <tr>
-           <td colspan="2"><%= h@post.body.gsub(/\n|\r|\r\n/, "<br>").html_safe %></td>
+           <td colspan="2", style="font-size:large"><%= h@post.body.gsub(/\n|\r|\r\n/, "<br>").html_safe %></td>
           </tr>
           <tr>
            <% if @post.user == current_user %>
