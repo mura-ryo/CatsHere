@@ -1,41 +1,41 @@
 <div class="container">
   <div class="row pt-3">
-    <div class="col-3"></div>
-    <div class="col-6 auto">
+    <div class="col-2"></div>
+    <div class="col-8 auto">
 
       <h2 class="text-center my-5">新規投稿</h2>
 
       <!-- 新規投稿 -->
       <%= form_with model: @post do |f| %>
       <table>
-      <tr>
-        <td>タイトル</td>
-        <td><%= f.text_field :title, placeholder: "タイトル" %></td>
-      </tr>
-      <tr>
-        <td></br></td>
-      </tr>
-      <tr>
-        <td>写真</td>
-        <td><%= f.file_field :image, placeholder: "写真", accept: "image/*" %></td>
-      </tr>
-      <tr>
-        <td></br></td>
-      </tr>
-      <tr>
-        <td>本文</td>
-        <td><%= f.text_area :body, placeholder: "こちらに文章をお書きください。", size: "50x5" %></td>
-      </tr>
-      <tr>
-        <td></br></td>
-      </tr>
-　　　<tr class ="text-center">
-　　　  <td></td>
-        <td><%= f.submit '投稿', class: 'btn btn-success px-4' %></td>
-      </tr>
-      <% end %>
-    </table>
-    
+        <tr>
+          <td style="font-size:large">タイトル&emsp;</td>
+          <td style="font-size:large"><%= f.text_field :title, placeholder: "タイトル" %></td>
+        </tr>
+        <tr>
+          <td></br></td>
+        </tr>
+        <tr>
+          <td style="font-size:large">写真</td>
+          <td><%= f.file_field :image, placeholder: "写真", accept: "image/*" %></td>
+        </tr>
+        <tr>
+          <td></br></td>
+        </tr>
+        <tr>
+          <td style="font-size:large">本文</td>
+          <td style="font-size:large"><%= f.text_area :body, placeholder: "こちらに文章をお書きください。", size: "50x5" %></td>
+        </tr>
+        <tr>
+          <td></br></td>
+        </tr>
+　　　  <tr class ="text-center">
+　　　    <td></td>
+          <td><%= f.submit '投稿', class: 'btn btn-success px-4' %></td>
+        </tr>
+        <% end %>
+      </table>
+
     </div>
   </div>
 </div>
