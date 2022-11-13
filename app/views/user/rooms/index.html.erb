@@ -1,32 +1,31 @@
 <div class="container">
   <div class="row pt-3">
-    <div class="col-2"></div>
-    <div class="col-8 auto">
+    <div class="col-3"></div>
+    <div class="col-6 auto">
 
       <h2 class="text-center my-5">チャット一覧</h2>
 
         <table class="table table-hover table-inverse">
           <thead>
             <tr>
-              <th></th>
-              <th class="text-center">ニックネーム</th>
+              <th class="text-center">プロフィール画像<br/>
+                                      ニックネーム</th>
               <th class="text-center">最新のトーク</th>
               <th colspan="3"></th>
             </tr>
           </thead>
           <% @another_entries.each do |entry| %>
        　  <tr>
-            <td class="col-1 text-center">
+            <td class="text-center">
               <%= link_to room_path(entry.room) do %>
               <%= image_tag entry.user.get_profile_image, style:"width: auto; height: 150px;" %>
               <% end %>
-            </td>
-            <td class="col-3 text-center align-middle">
+              <br/>
               <%= link_to room_path(entry.room) do %>
               <%= entry.user.name %>
               <% end %>
             </td>
-            <td class="col-4 text-center align-middle", colspan="3">
+            <td class="text-center align-middle", colspan="3">
               <%= truncate(Message.find_by(id: entry.room.message_ids.last)&.content, length: 20) %>
             </td>
           </tr>

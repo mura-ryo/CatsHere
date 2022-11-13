@@ -1,43 +1,43 @@
 <div class="container">
   <div class="row pt-3">
-    <div class="col-3"></div>
-    <div class="col-6 auto">
+    <div class="col-2"></div>
+    <div class="col-8 auto">
 
       <h2 class="text-center my-5">会員情報編集</h2>
 
       <%= form_with model: @user, url: user_path(@user.id), method: :patch do |f| %>
       <table>
         <tr>
-          <td>ニックネーム</td>
-          <td><%= f.text_field :name, placeholder: "ニックネーム", autofocus: true, autocomplete: "name" %></td>
+          <td style="font-size:large">ニックネーム</td>
+          <td style="font-size:large"><%= f.text_field :name, placeholder: "ニックネーム", autofocus: true, autocomplete: "name" %></td>
         </tr>
         <tr>
           <td></br></td>
         </tr>
         <tr>
-          <td>プロフィール画像</td>
+          <td style="font-size:large">プロフィール画像</td>
           <td><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></td>
         </tr>
         <tr>
           <td></br></td>
         </tr>
         <tr>
-          <td>自己紹介</td>
-          <td  colspan="3"><%= f.text_area:introduction, size: "50x5", value: "よろしくお願いします。", autocomplete: "introduction" %></td>
+          <td style="font-size:large">自己紹介</td>
+          <td  colspan="3", style="font-size:large"><%= f.text_area:introduction, size: "50x5", value: "よろしくお願いします。", autocomplete: "introduction" %></td>
         </tr>
         <tr>
           <td></br></td>
         </tr>
         <tr>
-          <td>メールアドレス</td>
-          <td><%= f.email_field :email, placeholder: "Eメール", autocomplete: "email" %></td>
+          <td style="font-size:large">メールアドレス</td>
+          <td style="font-size:large"><%= f.email_field :email, placeholder: "Eメール", autocomplete: "email" %></td>
         </tr>
         <tr>
           <td></br></td>
         </tr>
         <tr>
-          <td>パスワード(6文字以上)</td>
-          <td><%= f.password_field :password, placeholder: "パスワード", autocomplete: "new-password" %></td>
+          <td style="font-size:large">パスワード(6文字以上) </td>
+          <td style="font-size:large"><%= f.password_field :password, placeholder: "パスワード", autocomplete: "new-password" %></td>
         </tr>
         <tr>
           <td></br></td>

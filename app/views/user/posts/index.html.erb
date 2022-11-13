@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row pt-3">
-    <div class="col-1"></div>
-    <div class="col-10 auto">
+    <div class="col-2"></div>
+    <div class="col-8 auto">
 
       <h2 class="text-center my-5">投稿一覧</h2>
 
@@ -12,10 +12,10 @@
         <thead>
           <tr>
             <th class="text-center">投稿日時</th>
-            <th class="text-center">プロフィール画像</th>
-            <th class="text-center">ニックネーム</th>
-            <th class="text-center">投稿画像</th>
-            <th class="text-center">タイトル</th>
+            <th class="text-center">プロフィール画像<br/>
+                                    投稿主</th>
+            <th class="text-center">投稿画像<br/>
+                                    タイトル</th>
             <th colspan="3"></th>
           </tr>
         </thead>
@@ -29,8 +29,7 @@
                 <%= link_to user_path(post.user.id) do %>
                 <%= image_tag post.user.get_profile_image, style:"width: auto; height: 100px;" %>
                 <% end %>
-              </td>
-              <td class="text-center align-middle">
+                <br/>
                 <%= link_to user_path(post.user) do %>
                 <%= post.user.name %>
                 <% end %>
@@ -39,11 +38,12 @@
                 <%= link_to post_path(post.id) do %>
                 <%= image_tag post.get_image, style:"width: auto; height: 200px;" %>
                 <% end %>
-              </td>
-              <td class="text-center align-middle">
+                <br/>
+                <p style="font-size:large">
                 <%= link_to post_path(post.id) do %>
                 <%= post.title %>
                 <% end %>
+                </p>
               </td>
               <td colspan="3"></td>
             </tr>

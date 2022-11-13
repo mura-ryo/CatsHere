@@ -16,12 +16,11 @@
           </td>
           <td class="text-center align-middle">
             <%= link_to post_path(post.id) do %>
-            <%= post.title %>
-            <% end %>
-          </td>
-          <td class="text-center align-middle">
-            <%= link_to post_path(post.id) do %>
             <%= image_tag post.get_image, style:"width: auto; height: 100px;" %>
+            <% end %>
+            <br/>
+            <%= link_to post_path(post.id) do %>
+            <%= post.title %>
             <% end %>
           </td>
           <td colspan="3"></td>
